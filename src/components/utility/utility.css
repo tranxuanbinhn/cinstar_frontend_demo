@@ -1,0 +1,13 @@
+.mt-1348{
+margin-top: 134.6px;
+}
+.button{
+    background-position: left bottom;
+    background-image: linear-gradient(106deg, rgb(243, 234, 40), rgb(243, 234, 40));
+    transition: background-position .10s ease-in-out;
+}
+.button:hover {
+    cursor: pointer;
+    background-image: linear-gradient(106deg, #639, #36c 102.69%);
+    background-position: right center;
+}

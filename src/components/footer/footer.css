@@ -1,0 +1,11 @@
+.footer{
+    height: 20px;
+    background-color: #524ab0;
+    text-align: center;
+}
+.footer p {
+    line-height: 20px;
+    text-align: center;
+    margin: 0 auto;
+    font-family: 'Anton';
+}

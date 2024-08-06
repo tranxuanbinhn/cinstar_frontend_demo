@@ -1,0 +1,144 @@
+.showtime-select {
+    padding-top:  100px;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+    border-bottom: 1px solid #a9a9a9;
+}
+.mw290
+{
+    max-width: 255px;
+}
+.mw590
+{
+    max-width: 510px;
+}
+.showtime-select-item {
+    flex-grow: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #a9a9a9;
+    border-radius: 7px;
+}
+.title {
+    display: flex;
+    font-family: 'Josefin Sans', sans-serif;
+    justify-content: space-between;
+    font-size: 2.4rem;
+    color: #F3EA28;
+}
+.showtime-select-item  form {
+    
+   
+}
+.showtime-select-item  form select {
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    border-radius: 10px !important;
+    font-family: 'Josefin Sans', sans-serif;
+ 
+}
+
+.list-movies {
+    margin-top: 15px;
+}
+.movie {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    border-bottom: 1px  solid #F8FAFC;
+    margin-bottom: 50px;
+}
+.showtime-sm {
+    margin-top: 50px ;
+    margin: 0 auto;
+}
+.movie-left{
+    max-width: 40.8rem;
+    padding: 0 12px;
+}
+.movie-left img {
+    width: 100%;
+    height: auto;
+}
+.showtime{
+    padding-bottom: 50px;
+}
+.movie-left h1 {
+    font-size: 20px;
+    color: #F8FAFC;
+    font-family: 'Anton';
+    margin: 10px 0;
+    text-align: left;
+
+    line-height: 30px;
+}
+.des {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    justify-content: space-between;
+}
+.des span{
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    font-family: 'Josefin Sans';
+    color: #f3ea28;
+}
+.des span p{
+    color: #FAF8FC;
+}
+.movie-right {
+    max-width: 81.6rem;
+    display: flex;
+    flex-grow: 1;
+}
+.screen {
+    max-width: 520px;
+    flex-grow: 1;
+}
+.theater-movie {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: #F8FAFC;
+    font-family: 'Josefin Sans';
+    gap: 20px;
+    max-width: 272px;
+}
+.theater-movie p{
+    font-size: 16px;
+    line-height: 20px;
+}
+.theater-movie h1{
+    font-size: 26px;
+    text-transform: uppercase;
+}
+.screen p{
+text-align: left;
+font-size: 11px;
+color: #FAF8FC;
+font-family: 'Josefin Sans';
+text-transform: uppercase;
+}
+.screen-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    color: #F8FAFC;
+    font-size: 14px;
+    gap: 5px;
+}
+.screen-list a{
+    width: 50px;
+    padding: 10px 5px;
+    border-radius: 6px;
+    border:1px solid #F8FAFC;
+    margin-bottom: 5px;
+}

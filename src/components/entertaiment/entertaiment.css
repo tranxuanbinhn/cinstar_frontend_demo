@@ -1,0 +1,52 @@
+
+.entertaiment h1{
+    font-size: 40px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-family: 'Anton';
+    color: #F0F8Fa;
+}
+.entertaiment{
+padding-bottom: 200px;
+}
+.entertaiment p{
+    font-size: 1.6rem;
+    max-width: 660px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    color: #F0F8Fa;
+    font-family: 'Anton';
+    font-weight: 200;
+}
+.entertaiment-list
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+.entertaiment-item
+{
+    margin-top: 20px;
+    max-width: 38.4rem;
+    flex-grow: 1;
+
+}
+.contact-left{
+    max-width: 58.8rem;
+
+}.contact-social{
+    display: flex;
+}
+.contact-social img{
+    max-width: 180px;
+}
+.contact-social span{
+max-width: 300px;
+border-radius: 5px;
+padding: 24px;
+flex-grow: 1;
+font-size: 40px;
+text-align: center;
+}

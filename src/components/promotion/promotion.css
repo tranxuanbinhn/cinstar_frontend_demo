@@ -1,0 +1,28 @@
+.promotion-inner{
+    max-width: 410px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    
+}
+.promotion-inner img{
+    max-width: 378px;
+    height: auto;
+    border-radius: 5px;
+}
+.promotion h1{
+text-align: left;
+font-size: 40px;
+margin-bottom: 50px;
+font-family: 'Anton';
+color: #F8FAFC;
+}
+.all-promotion{
+    max-width: 236px;
+    font-size: 16px;
+    background-color: #F3E328;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 40px auto;
+    margin-bottom: 100px;
+}

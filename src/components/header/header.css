@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Lato&display=swap');
+.header-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 78px;
+}
+.header-action{
+    max-width: 479px;
+    flex-grow: 1;
+
+    
+}
+.header-ctn{
+  width: 100%;
+ top: 0px;
+  position: fixed;
+  z-index: 10;
+  background-color: #0f1729;
+ 
+}
+.header{
+    font-family: 'Anton, sans-serif';
+   font-weight: 600;
+  font-style: normal;
+  font-size: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+}
+.header-action-order1{
+    margin-right: 10px;
+        max-width: 125px;
+    border: 1px solid #0f1729;
+    border-radius: 5px;
+    height: 40px;
+    ;
+    background-color: rgb(243, 234, 40); 
+    background-image:linear-gradient(106deg, rgb(243, 234, 40), rgb(243, 234, 40));
+    color: #0f172a;
+    background-position:left bottom;
+    transition: background-position .10s ease-in-out;
+}
+.header-action-order1:hover{
+  cursor: pointer;
+  background-image: linear-gradient(106deg, #639, #36c 102.69%);
+  background-position: right center;
+ 
+}
+.header-action-order1 span{
+margin-left: 5px;
+}
+.header-action-order2 span{
+    margin-left: 5px;
+    }
+.header-action-order2{
+    height: 40px;
+    max-width: 125px;
+    border: 1px solid #0f1729;
+    border-radius: 5px;
+    height: 40px;
+    background-color:  rgb(102, 51, 153);
+    background-image:linear-gradient(106deg, rgb(7, 41, 104), rgb(170, 143, 218));
+    background-position: left bottom;
+    transition: background-position .10s ease-in-out;
+    color: #F8FAFC !important;
+}
+.header-action-order2:hover{
+  cursor: pointer;
+  background-image:linear-gradient(106deg, rgb(223, 212, 1), rgb(210, 143, 17));
+}
+.button-primary{
+    font-size: 1.4rem;
+    color: #0f172a;
+   font-family: 'Anton';
+   letter-spacing: 0.5px;
+  font-style: normal;
+   padding: 10px;
+
+}
+.header-mid-right
+{
+    max-width: 508px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.header-search{
+    max-width: 250px;
+    flex-grow: 1;
+    position: relative;
+}
+.search{
+    border-radius: 100rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    height: 3rem;
+    line-height: 1;
+    padding: 0 3rem 0 1.6rem;
+    width: 80%;
+ 
+}
+.search-button{
+    top: 10px;
+    position: absolute;
+    right: 11px;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+.search-button:hover{
+  cursor: pointer  ;
+}
+.header-logo{
+    max-width: 130px;
+}
+.header-logo img{
+    width: 100px; /* Kích thước của hình ảnh */
+    height: auto; 
+}
+.header-login{
+    max-width: 120px;
+    flex-grow: 1;
+    font-size: 16px;
+    font-family: 'Anton';
+    position: relative;
+    color: #F8FAFC;
+    letter-spacing: 0.5px;
+}
+.header-login:hover{
+  color: #f3ea28;
+
+}
+.header-login a{
+margin-left: 5px;
+
+}
+.header-login span{
+    font-size: 20px;
+    position: absolute;
+    left: 1px;
+    top: -2px;
+    }
+
+
+/*---------------------------------*/
+
+.header-under {
+
+    padding: 20px;
+    display: flex; /* Sử dụng flexbox để bố trí các phần tử */
+    justify-content: space-between; /* Căn chỉnh các phần tử */
+    border-top: 0.5px solid #ccc;
+    color:  #F8FAFC;
+  }
+  
+  .header-menu {
+    list-style: none; /* Ẩn dấu đầu dòng */
+    display: flex;
+  }
+  .header-under-left{
+    max-width: 217px;
+    flex-grow: 1;
+    display: flex;
+    font-size: 16px;
+    font-family: 'Anton, sans-serif';
+    font-weight: bold;
+    justify-content: space-between;
+
+  }
+  .header-under-left ul:hover{
+    color: #f3ea28;
+  
+  }
+  .header-under-left a:hover{
+    color: #f3ea28;
+    text-decoration: underline;
+  }
+  .header-menu-item {
+    margin-right: 20px;
+    font-size: 16px;
+    font-family: 'Anton, sans-serif';
+    color: #F8FAFC !important;
+    /* Khoảng cách giữa các item */
+  }
+  .header-under-left ul{
+    position: relative;
+    margin-left: 10px;
+  }
+  .header-under-left ul span{
+    position: absolute;
+    left:-17px
+  }
+  .header-under-left a{
+    position: relative;
+    margin-left: 10px;
+  }
+  .header-under-left a span{
+    position: absolute;
+    left:-17px
+  }
+  
+  .header-menu-item a {
+    text-decoration: none; /* Ẩn gạch chân */
+
+   
+  }
+   
+  .header-menu-item a:hover {
+    color: #f3ea28;
+    text-decoration: underline;
+  }
+ 
+ 
+  
+  /* Responsive design (ví dụ cho màn hình nhỏ) */
+  @media (max-width: 768px) {
+    .header-menu {
+      flex-direction: column; /* Sắp xếp các item theo cột */
+    }
+  }
+
+  .theater{
+    display: flex;
+    display: none;
+    flex-wrap: wrap;
+    padding: 20px 20px;
+    background-color: #0f172a;
+    color: #f2f2f2;
+    font-weight: 500;
+  }
+  .theater li{
+    width: 30%;
+    height: 40px;
+    list-style: none;
+    text-align: left;;
+  }
+  

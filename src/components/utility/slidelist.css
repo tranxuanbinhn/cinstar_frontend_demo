@@ -1,0 +1,45 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+/* src/Arrow.css */
+.slick-prev, .slick-next {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+  
+    font-size: 24px; /* Kích thước font */
+  
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1; 
+  }
+   .slick-next::before{
+    font-size: 30px;
+
+  }
+  .slick-prev::before{
+    font-size: 30px;
+
+  }
+  
+  .slick-prev {
+    left: 10px;
+  }
+  
+  .slick-next {
+    right: 10px;
+  }
+  .sliderlist-inner{
+    max-width: 306px;
+    flex-grow: 1;
+  }
+  .sliderlist-inner{
+    padding: 0 12px;
+    margin-left: 5px;
+    height: 566px;
+    overflow: hidden;
+  }

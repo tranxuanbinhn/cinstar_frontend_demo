@@ -1,0 +1,94 @@
+.category> h1{
+    font-size: 40px;
+    font-family: 'Anton';
+    color: #F8FAFC;
+    text-transform: uppercase;
+}
+.category-list{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.category-item{
+    max-width: 592px;
+    flex-grow: 1;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}.category-item .information h1{
+font-size: 20px;
+font-family: 'Anton';
+text-transform: uppercase;
+color: #F8FAFC;
+line-height: 30px;
+}
+.information-tag{
+    font-size: 14px;
+    font-family: 'Josefin Sans';
+    text-align: left;
+}
+.cl{
+    margin-right: 15px;
+    display: inline-block;
+    margin-top: 5px;
+    
+}
+.information-tag {
+    color: #F8FAFC;
+
+}
+.information-tag svg{
+    color: #F3EA28;;
+}
+.category-item .img{
+    max-width: 312px;
+    flex-grow: 1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.category-item .img img{
+    width: 100%;
+    height: auto;
+}
+.screen-item{
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #F8FAFC;
+    border-radius: 5px;
+}
+.showmore-st{
+    margin-top: 20px;
+    text-align: left;
+    color: #f3ea28;
+    font-size: 1.4rem;
+    font-weight: 600;
+   
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  
+}
+.smst{
+    display: flex;
+}
+.screen-item-inner-detail{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+
+}
+.screen-item-inner> p{
+    margin: 10px 0;
+    text-transform: uppercase;
+}
+.showmore-st:hover{
+    cursor: pointer;
+}
+.screen-item span{
+    display: flex;
+    justify-content: space-between;
+}
+.screen-item > span > svg:hover{
+cursor: pointer;
+}

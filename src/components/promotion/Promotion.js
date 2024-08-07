@@ -27,7 +27,7 @@ return (
             <img src="https://res.cloudinary.com/daubnjjos/image/upload/v1722851069/km-m-2_krxawh.jpg"/>
         </div>
         </Slider>
-
+        <div className="mb50"></div>
         <a> <div className="all-promotion button">TẤT CẢ ƯU ĐÃI</div></a>
 </div>
 );

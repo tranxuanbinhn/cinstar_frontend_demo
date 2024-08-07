@@ -1,0 +1,54 @@
+.banner {
+display: flex;
+
+}
+.banner-img{
+    max-width: 420px;
+    flex-grow: 1;
+}
+.banner-img img{
+    width: 100%;
+    height: auto;
+}
+.banner-infor {
+    max-width: 780px;
+    flex-grow: 1;
+    padding: 45px;
+    background: linear-gradient(106deg, rgba(102, 51, 153, .8), rgba(51, 102, 204, .8) 102.69%);
+
+}
+.banner-infor h1{
+    font-size: 45px;
+    font-family: 'Anton';
+    color: #f8fafc;
+    text-align: left;
+    text-transform: uppercase;
+}
+.banner-infor p{
+    font-size: 16px;
+    color: #f8fafc;
+    text-align: left;
+    font-family: 'Josefin Sans';
+    font-weight: 200;
+    margin-top: 20px;
+}
+.type-movie{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    background-color: rgba(15, 23, 42, .7);
+    position: sticky;
+    top: 134px;
+    margin-bottom: 100px;
+}
+.type-movie-item {
+    max-width: 29.4rem;
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 18px;
+    font-family: 'Anton';
+    list-style: none;
+    text-transform: uppercase;
+    padding-bottom: 14px;
+    color: #fff;
+}

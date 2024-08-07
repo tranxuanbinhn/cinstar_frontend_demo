@@ -28,10 +28,7 @@
     font-size: 2.4rem;
     color: #F3EA28;
 }
-.showtime-select-item  form {
-    
-   
-}
+
 .showtime-select-item  form select {
     width: 100%;
     height: 100%;
@@ -54,7 +51,8 @@
 }
 .showtime-sm {
     margin-top: 50px ;
-    margin: 0 auto;
+
+    margin-bottom: 50px;
 }
 .movie-left{
     max-width: 40.8rem;
@@ -64,9 +62,7 @@
     width: 100%;
     height: auto;
 }
-.showtime{
-    padding-bottom: 50px;
-}
+
 .movie-left h1 {
     font-size: 20px;
     color: #F8FAFC;
@@ -97,6 +93,10 @@
     max-width: 81.6rem;
     display: flex;
     flex-grow: 1;
+}
+.showmore-ctn{
+    display: flex;
+    justify-content: center;
 }
 .screen {
     max-width: 520px;
@@ -141,4 +141,5 @@ text-transform: uppercase;
     border-radius: 6px;
     border:1px solid #F8FAFC;
     margin-bottom: 5px;
+   
 }

@@ -26,7 +26,10 @@
 
   }
   
-
+  .slick-prev {
+    left: 10px;
+  }
+  
   .slick-next {
     right: 10px;
   }
@@ -98,7 +101,7 @@
   .viewmore{
    width: 245px;
     border: 1px solid #f3ea28;
-    color: #f3ea28;
+    font-family: 'Anton';
     font-weight: bold;
     border-radius: 3px;
     padding: 10px 20px;

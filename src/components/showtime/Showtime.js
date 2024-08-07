@@ -7,6 +7,7 @@ import { FaRegClock } from "react-icons/fa";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { PiSubtitlesBold } from "react-icons/pi";
 import { BsFillPersonFill } from "react-icons/bs";
+import SliderCommon from '../slider-common/SliderCommon';
 const Showtime = () => {
     return (
         <div className='showtime'>
@@ -88,7 +89,10 @@ const Showtime = () => {
                     </div>
                 </div>
             </div>
+            <div className='showmore-ctn'>
             <div className='showtime-sm button'>Xem TẤT cả lịch chiếu</div>
+            </div>
+            <SliderCommon></SliderCommon>
         </div>
     );
 }

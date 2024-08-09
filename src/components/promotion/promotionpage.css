@@ -1,0 +1,49 @@
+.promotion-page-items {
+    display: flex;
+    margin-top: 100px;
+    gap: 20px;
+}
+.promotion-page{
+    padding-top: 50px;
+}
+.m-bt100{
+    padding-bottom: 100px;
+}
+.promotion-page-item-information {
+    color: #F8fafc;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 16px;
+}
+.promotion-page-item-informatio li{
+    line-height: 20px;
+}
+.promotion-page-item-information-title h1{
+    font-size: 25px;
+    font-family: 'Anton';
+    margin-bottom: 10px;
+}
+.promotion-page-item-information-title p{
+    font-size: 16px;
+    font-family: 'Josefin Sans';
+}
+.promotion-page-item-information-condition span,
+.promotion-page-item-information-note span{
+font-size: 18px;
+}
+.order-ticket{
+    padding: 15px;
+    text-align: center;
+}
+.promotion-page-item-information-condition,
+.promotion-page-item-information-note {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.promotion-page-items:nth-child(even){
+flex-direction: row-reverse;
+}

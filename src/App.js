@@ -7,6 +7,9 @@ import OrderPop from './pages/OrderPop';
 import ShowTimePage from './pages/ShowTimePage';
 import TheaterDetailPage from './pages/TheaterDetailPage';
 import MovieDetailPage from './pages/MovieDetailPage';
+import SearchPage from './pages/SearchPage';
+import PromotionPage from './pages/PromotionPage';
+import LoginPage from './pages/LoginPage';
 function App() {
   return (
     <div className="App ">
@@ -18,6 +21,9 @@ function App() {
         <Route path="/showtimes" element={<ShowTimePage/>}/>
         <Route path="/theaters" element={<TheaterDetailPage/>}/>
         <Route path="/movie-detail" element={<MovieDetailPage/>}/>
+        <Route path="/search" element={<SearchPage/>}/>
+        <Route path="/promotion" element={<PromotionPage/>}/>
+        <Route path="/login" element={<LoginPage/>}/>
         </Routes>
        
         </BrowserRouter>

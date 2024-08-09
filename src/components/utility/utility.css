@@ -1,6 +1,9 @@
 .mt-1348{
 margin-top: 134.6px;
 }
+.pt-100{
+    padding-top: 100px;
+}
 .button{
     background-position: left bottom;
     background-image: linear-gradient(106deg, rgb(243, 234, 40), rgb(243, 234, 40));

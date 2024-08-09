@@ -1,0 +1,42 @@
+.search-theater-list{
+    display: flex;
+
+}
+.search-theater-item{
+    max-width: 384px;
+
+}
+.search-theater-item img{
+    width: 100%;
+    height: auto;
+}
+.search-theater-item-content{
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+    background: linear-gradient(106deg, rgba(102, 51, 153, .8), rgba(51, 102, 204, .8) 102.69%);
+}
+.pb-100{
+    padding: 100px;
+}
+
+.search-theater-item-content h1{
+    font-size: 24px;
+    color: #F8fafc;
+    text-transform: uppercase;
+    font-family: 'Anton';
+    margin-bottom: 10px;
+}
+
+.search-theater-item-content span{
+    font-size: 16px;
+    color: #F8fafc;
+   display: flex;
+   gap: 10px;
+    font-family: 'Josefin Sans';
+}
+.search-theater-item-content span svg{
+    color: #F3EA28;
+}

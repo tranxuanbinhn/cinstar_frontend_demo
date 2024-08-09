@@ -2,7 +2,7 @@ import Header from "~/components/header/Header";
 import SliderPage from "~/components/slider/slider";
 import Order from "~/components/order/Order";
 import SlideList from "~/components/slider-list/SlideLists";
-import Promotion from "~/components/promotion/Promotion";
+import Promotion from "~/components/promotion-component/Promotion";
 import Member from "~/components/member/Member";
 import Entertaiment from "~/components/entertaiment/Entertaiment";
 import FooterCP from "~/components/footer/FooterCP";

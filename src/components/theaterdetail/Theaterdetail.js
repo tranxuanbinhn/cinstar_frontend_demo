@@ -1,6 +1,6 @@
 import './theaterdetail.css';
 import CategoryMovie from './category-movie/CategoryMovie';
-import Promotion from '../promotion/Promotion';
+import Promotion from '../promotion-component/Promotion';
 const Theaterdetail = () => {
     
     return (

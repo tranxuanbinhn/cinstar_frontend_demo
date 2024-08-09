@@ -1,0 +1,16 @@
+.policy-agree p{
+    text-align: left;
+}
+.policy-agree{
+    display: flex;
+    padding-bottom: 50px;
+    justify-content: start;
+}
+.redirec-login{
+    text-align: right;
+    margin-bottom: 20px;
+    justify-content: end;
+}
+.redirec-login:hover{
+    cursor: pointer;
+}

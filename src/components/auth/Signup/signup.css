@@ -1,0 +1,80 @@
+
+.form{
+    background-color: #F8fafc;
+    font-family: 'Josefin Sans';
+    font-size: 16px;
+    color: #494949;
+    padding: 36px;
+
+}
+.form>form>.filed{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.form>form>div>label>span{
+    color: red;
+}
+.form>form>div>input{
+    padding: 12px 36px 8px 16px;
+    border:0.5px solid #ccc;
+}
+.policy span{
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+}
+.policy span:hover{
+cursor: pointer;
+}
+.policy-inner{
+    overflow: auto;
+    color: #000000E0;
+    text-align: left;
+    padding-top: 20px;
+}
+.policy-inner h1{
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.policy-inner p{
+line-height: 20px;
+margin-bottom: 20px;
+}
+.policy-agree {
+
+
+flex-direction: row !important;
+margin-top: 20px;
+text-align: left;
+line-height: 20px;
+gap: 10px;
+  
+}
+.policy-agree input{
+    max-width: 20px;
+}
+form>button{
+    width: 100%;
+    color: #0f172a;
+    font-size: 16px;
+    font-family: 'Anton';
+    padding: 8px 12px;
+    background-color: #f3ea28;
+    border: none;
+    border-radius: 4px;
+}
+.redirec-login {
+    margin-top: 20px;
+    display: flex;
+     gap: 10px;
+}
+.redirec-login a{
+    font-weight: bold;
+    text-decoration: underline;
+}
+.signup{
+    padding-bottom: 100px;
+}

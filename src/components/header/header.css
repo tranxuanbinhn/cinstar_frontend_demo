@@ -11,6 +11,47 @@
 
     
 }
+.header-user-info {
+  position: relative;
+}
+.hvb:hover .infor{
+  display: flex;
+}
+.hvb{
+  display: block;
+}
+.infor{
+  position: absolute;
+  text-align: left;
+  background-color: #F8FAFC;
+
+
+
+  max-width: 175px;
+  display: none;
+  flex-direction: column;
+  left: -6px;
+  top: 18px;
+  
+}
+.infor a:hover{
+  cursor: pointer;
+
+}
+.infor>div{
+  padding: 10px;
+  font-family: 'Josefin Sans';
+  font-size: 16px;
+  background-color: #0f172a;
+  color: #F8FAFC;
+
+
+}
+.cl-main{
+  color: #F8FAFC;
+  font-family: 'Josefin Sans';
+
+}
 .header-ctn{
   width: 100%;
  top: 0px;
@@ -126,6 +167,17 @@ margin-left: 5px;
     position: relative;
     color: #F8FAFC;
     letter-spacing: 0.5px;
+   
+   
+}
+.header-login > a{
+  color: #F8FAFC !important;
+  font-family: 'Josefin Sans';
+  margin-left: 20px !important;
+}
+
+.header-login:hover >a{
+  color: #f3ea28 !important;
 }
 .header-login:hover{
   color: #f3ea28;

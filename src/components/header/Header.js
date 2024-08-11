@@ -5,11 +5,32 @@ import { CiSearch } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
 import { TiLocation } from "react-icons/ti";
 import { AiOutlineSchedule } from "react-icons/ai";
-
+import { IoPersonCircleSharp } from "react-icons/io5";
+import { TbLogout2 } from "react-icons/tb";
+import { logoutUser } from '~/features/auth/UserSlice';
+import { useDispatch } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Header(props)
 {
+    const dispatch = useDispatch();
+    const logout = () => {
+        dispatch(logoutUser())
+            .then((response) => {
+            
+                    window.location.href = '/';
+              
+            })
+            .catch((error) => {
+                console.error('Logout error:', error);
+                toast('Logout failed. Please try again.');
+            });
+    };
+    
+    
     return(
         <div className='header-ctn'>
+            <ToastContainer position='top-center'></ToastContainer>
               <div className="header">
         <div className="header-top">
             <a className="header-logo">
@@ -33,11 +54,23 @@ function Header(props)
                     <span className='search-button'><CiSearch></CiSearch></span>
 
                 </div>
-                <div className="header-login">
-                    <span> <CgProfile /></span>
-                    <a>Đăng nhập</a>
-                </div>
-
+                {props.userInfor ? (
+                            <div className="header-user-info">
+                                <div className='hvb'>
+                                <span className='cl-main hv'>Xin chào, {props.userInfor.username}</span>
+                               
+                               <div className='infor'>
+                                    <div> <IoPersonCircleSharp /><a>Trang cá nhân</a></div>
+                                    <div onClick={logout}><TbLogout2></TbLogout2><a>Đăng xuất</a></div>
+                                </div>
+                               </div>
+                            </div>
+                        ) : (
+                            <div className="header-login">
+                                <span><CgProfile /></span>
+                                <a href="/login">Đăng nhập</a>
+                            </div>
+                        )}
                 <div className="header-language"></div>
 
             </div>

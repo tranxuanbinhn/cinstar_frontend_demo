@@ -17,8 +17,32 @@ cursor: pointer;
 color: #F8fafc;
 background-image: linear-gradient(106deg, #639, #36c 102.69%);
 }
-
+.pos-rel{
+    position: relative;
+}
+.pos-abs{
+    position: absolute;
+}
 .active {
     background-color: #F8fafc;
     color: black;
+}
+.cl_red{
+    color: red;
+    font-size: 12px;
+    font-weight: 300;
+    font-style: italic;
+}
+.div-input>input{
+    padding: 12px 20px 8px 16px;
+    border:0.5px solid #ccc;
+    width: 93%;
+ 
+}
+.div-input>span{
+    right: 0;
+    top: 29%;
+}
+.center{
+display: block;margin: 0 auto;
 }

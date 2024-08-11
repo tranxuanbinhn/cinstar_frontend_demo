@@ -8,11 +8,14 @@ import Entertaiment from "~/components/entertaiment/Entertaiment";
 import FooterCP from "~/components/footer/FooterCP";
 import './style/homepage.css';
 import '../components/utility/utility.css';
+import {useSelector} from 'react-redux'
 function HomePage()
 {
+    const userInfor = useSelector((state)=> state.user.userInfor);
+  
     return (
         <div className="homepage ">
-            <Header></Header>
+            <Header userInfor={userInfor}></Header>
             <div className=" background-color">
             <div className="container">
             

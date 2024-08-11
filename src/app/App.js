@@ -1,15 +1,15 @@
 
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from './pages/HomePage';
-import OrderPage from './pages/OrderPage'
-import OrderPop from './pages/OrderPop';
-import ShowTimePage from './pages/ShowTimePage';
-import TheaterDetailPage from './pages/TheaterDetailPage';
-import MovieDetailPage from './pages/MovieDetailPage';
-import SearchPage from './pages/SearchPage';
-import PromotionPage from './pages/PromotionPage';
-import LoginPage from './pages/LoginPage';
+import HomePage from '../pages/HomePage';
+import OrderPage from '../pages/OrderPage'
+import OrderPop from '../pages/OrderPop';
+import ShowTimePage from '../pages/ShowTimePage';
+import TheaterDetailPage from '../pages/TheaterDetailPage';
+import MovieDetailPage from '../pages/MovieDetailPage';
+import SearchPage from '../pages/SearchPage';
+import PromotionPage from '../pages/PromotionPage';
+import LoginPage from '../pages/LoginPage';
 function App() {
   return (
     <div className="App ">

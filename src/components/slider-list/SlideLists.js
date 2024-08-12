@@ -2,7 +2,9 @@ import Slider from "react-slick";
 import Arrow from "./Arrow"; 
 import './slidelist.css';
 import { IoIosPlayCircle } from "react-icons/io";
-const SlideList = (props) => {
+import { Link } from "react-router-dom";
+const SlideList = ({ nameTitle, movieshowings }) => {
+
     const settings = {
         
         infinite: true,
@@ -15,42 +17,30 @@ const SlideList = (props) => {
       };
       return (
         <div className="SliderList">
-         <h1>{props.nameTitle}</h1>
+         <h1>{nameTitle}</h1>
           
-
+         
           <Slider {...settings}>
-          <div className="sliderlist-inner">
-          <img src="https://res.cloudinary.com/daubnjjos/image/upload/v1722847606/vay-ham-tren-khong_f5tqdh.jpg" alt="Slider 1" />
-          <h1>Vây hãm trên không</h1>
-          <div className="trailer-order">
-            <a><IoIosPlayCircle></IoIosPlayCircle>Xem trailer</a>
-            <button className="button">Đặt vé</button>
-          </div>
-        </div>
-        <div className="sliderlist-inner">
-          <img src="https://res.cloudinary.com/daubnjjos/image/upload/v1722847606/vay-ham-tren-khong_f5tqdh.jpg" alt="Slider 2" />
-          <h1>Vây hãm trên không</h1>
-          <div className="trailer-order">
-            <a><IoIosPlayCircle></IoIosPlayCircle>Xem trailer</a>
-            <button>Đặt vé</button>
-          </div>
-        </div>
-        <div className="sliderlist-inner">
-          <img src="https://res.cloudinary.com/daubnjjos/image/upload/v1722847606/vay-ham-tren-khong_f5tqdh.jpg" alt="Slider 3" />
-          <h1>Vây hãm trên không</h1>
-          <div className="trailer-order">
-            <a><IoIosPlayCircle></IoIosPlayCircle>Xem trailer</a>
-            <button>Đặt vé</button>
-          </div>
-        </div>
-        <div className="sliderlist-inner">
-          <img src="https://res.cloudinary.com/daubnjjos/image/upload/v1722847606/vay-ham-tren-khong_f5tqdh.jpg" alt="Slider 4" />
-          <h1>Vây hãm trên không</h1>
-          <div className="trailer-order">
-            <a><IoIosPlayCircle></IoIosPlayCircle>Xem trailer</a>
-            <button>Đặt vé</button>
-          </div>
-        </div>
+            {
+               movieshowings && movieshowings.length > 0 ? (
+                movieshowings.map((movieshowing) => (
+                   <Link to={`/movie-detail/${movieshowing.id}`}>
+                     <div className="sliderlist-inner" key={movieshowing.id}>
+                        <img src={process.env.REACT_APP_API_IMG_URL + movieshowing.posterPath} alt={movieshowing.title} />
+                        <h1>{movieshowing.title}</h1>
+                        <div className="trailer-order">
+                            <a><IoIosPlayCircle />Xem trailer</a>
+                            <button className="button">Đặt vé</button>
+                        </div>
+                    </div>
+                   </Link>
+                ))
+            ) : (
+                <div>No movies available</div>
+            )
+            }
+        
+       
           </Slider>
 
     <a ><div className="viewmore button">Xem thêm</div></a>

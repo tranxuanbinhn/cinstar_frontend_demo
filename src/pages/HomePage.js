@@ -8,11 +8,31 @@ import Entertaiment from "~/components/entertaiment/Entertaiment";
 import FooterCP from "~/components/footer/FooterCP";
 import './style/homepage.css';
 import '../components/utility/utility.css';
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux';
+import { getShowingMovie, getUpcommingMovie } from "~/features/movie/MovieSlice";
+import { useEffect } from "react";
+
 function HomePage()
 {
     const userInfor = useSelector((state)=> state.user.userInfor);
-  
+    const showingMovies = useSelector((state)=> state.movie.movieshowings);
+    const upcommingMovie = useSelector((state)=> state.movie.movieupcommings);
+    const loading = useSelector((state)=> state.movie.loading);
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(getShowingMovie()).then((response)=>{
+         
+        })
+        dispatch(getUpcommingMovie()).then((response)=>{
+         
+        })
+       
+    }, [dispatch])
+    if(loading)
+    {
+        return <div>Loading</div>;
+    }
+    
     return (
         <div className="homepage ">
             <Header userInfor={userInfor}></Header>
@@ -21,8 +41,8 @@ function HomePage()
             
             <SliderPage></SliderPage>
             <Order></Order>
-            <SlideList nameTitle="PHIM ĐANG CHẾU"/>
-            <SlideList nameTitle="PHIM SẮP CHIẾU"/>
+            <SlideList nameTitle="PHIM ĐANG CHẾU" movieshowings={showingMovies}/>
+            <SlideList nameTitle="PHIM SẮP CHIẾU" movieshowings={upcommingMovie}/>
             <Promotion></Promotion>
             <Member></Member>
             <Entertaiment></Entertaiment>

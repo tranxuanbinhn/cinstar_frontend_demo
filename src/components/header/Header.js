@@ -11,6 +11,7 @@ import { logoutUser } from '~/features/auth/UserSlice';
 import { useDispatch } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 function Header(props)
 {
     const dispatch = useDispatch();
@@ -78,7 +79,7 @@ function Header(props)
         <div className="header-under">
             <div className="header-under-left">
                 <ul><span><TiLocation></TiLocation></span> Chọn rạp</ul>
-                <a> <span><AiOutlineSchedule></AiOutlineSchedule></span> Lịch chiếu</a>
+               <Link to={'/showtimes'}><span><AiOutlineSchedule></AiOutlineSchedule></span> Lịch chiếu</Link> 
             </div>
             <ul className="header-menu">
                 <li className="header-menu-item"><a>Khuyến mãi</a></li>

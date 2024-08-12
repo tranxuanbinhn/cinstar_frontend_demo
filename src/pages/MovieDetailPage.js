@@ -2,8 +2,11 @@ import MovieDetail from "~/components/movie-detail/MovieDetail";
 import Header from "~/components/header/Header";
 import FooterCP from "~/components/footer/FooterCP";
 import '../components/utility/utility.css';
+
 function MovieDetailPage()
 {
+
+
     return (
         <div>
         <Header></Header>

@@ -9,31 +9,49 @@ import { FaPlayCircle } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdOndemandVideo } from "react-icons/md";
 import Popcorn from '../orderpopcorn/popcorn/Popcorn';
-
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDetailMovie } from '~/features/movie/MovieSlice';
 const MovieDetail = () => {
+    const detailmovie = useSelector((state)=> state.movie.detailmovie);
+    const loadding = useSelector((state)=> state.movie.loadding);
+    const dispatch = useDispatch();
+    const {id} = useParams();
+    useEffect(()=>{
+        dispatch(getDetailMovie(id)).then((response)=>{
+            console.log('detailmovie',detailmovie);
+        })
+    }, [dispatch])
+    if(loadding)
+    {
+        return <div ><p>Loading</p></div>
+    }
     return (
        <div >
          <div className='movie-detail'>
-        <div className='img'>
-            <img src='https://res.cloudinary.com/daubnjjos/image/upload/v1722944792/deadpool-va-wolverine_x4zlgb.png'/>
+       
+       
+            <div className='img'>
+            <img src={process.env.REACT_APP_API_IMG_URL+detailmovie?.posterPath}/>
         </div>
         <div className='information'>
-            <h1 >THÁM TỬ LỪNG DANH CONAN (LT) 2D: NGÔI SAO 5 CÁNH 1 TRIỆU ĐÔ (T13)
+            <h1 >{detailmovie?.title}
             </h1>
             <div className='information-tag movie-detail-tag'>
             <span className='cl '><CiShoppingTag/><span>Hoat hinh</span></span>
                         <span className='cl'><FaRegClock/><span>Hoat hinh</span></span>
-                        <span className='cl'><FaEarthAmericas/><span>Hoat hinh</span></span>
+                        <span className='cl'><FaEarthAmericas/><span>{detailmovie?.runtime}</span></span>
                         <span className='cl'><PiSubtitlesBold/><span>Hoat hinh</span></span>
                         <span className='cl'><BsFillPersonFill/><span>Hoat hinh</span></span>
             </div>
             <div className='movie-detail-description'>
                 <h1>mô tả</h1>
-                <p>Khởi chiếu: Thứ Sáu, 02/08/2024</p>
+                <p>Khởi chiếu: {detailmovie?.releaseDate}</p>
             </div>
             <div className='movie-detail-description'>
                 <h1>NỘI DUNG PHIM</h1>
-                <p>Trong khi đến Hakodate tham gia một giải kiếm đạo, Conan và Heiji đụng độ siêu trộm Kaito Kid - khi hắn đang nhắm tới một thanh kiếm Nhật được cất giấu trong nhà kho của một gia đình tài phiệt. Thi thể một tay buôn vũ khí khét tiếng được phát hiện với vết chém hình chữ thập, và trùng hợp thay, "kho báu" mà gã truy lùng dường như cũng có liên quan mật thiết đến thanh kiếm cổ mà Kid đang nhắm tới.</p>
+                <p>{detailmovie?.overview}</p>
             </div>
             <div className='trailer'>
                <FaPlayCircle/> <a>Xem Trailer</a>
@@ -41,7 +59,6 @@ const MovieDetail = () => {
 
        
         </div>
-        
     </div>
     <div className='order-ticket'>
         <div className='schedule'>

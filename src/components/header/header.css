@@ -220,13 +220,18 @@ margin-left: 5px;
     font-weight: bold;
     justify-content: space-between;
 
+    
+  }
+  .header-under-left>a{
+    color: #F8FAFC !important;
+    text-decoration: none;
   }
   .header-under-left ul:hover{
     color: #f3ea28;
   
   }
   .header-under-left a:hover{
-    color: #f3ea28;
+    color: #f3ea28 !important;
     text-decoration: underline;
   }
   .header-menu-item {

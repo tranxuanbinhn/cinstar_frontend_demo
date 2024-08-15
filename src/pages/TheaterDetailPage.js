@@ -2,8 +2,10 @@ import Theaterdetail from "~/components/theaterdetail/Theaterdetail";
 import Header from "~/components/header/Header";
 import FooterCP from "~/components/footer/FooterCP";
 import '../components/utility/utility.css';
+import { useParams } from "react-router-dom";
 function TheaterDetailPage()
 {
+  
     return (
         <div>
         <Header></Header>

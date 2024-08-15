@@ -25,7 +25,11 @@
     font-size: 30px;
 
   }
-  
+  .white-no{
+
+    color: #F8FAFC !important;
+    text-decoration: none;
+  }
 
   .slick-next {
     right: 10px;

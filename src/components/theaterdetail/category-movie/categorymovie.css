@@ -69,6 +69,9 @@ line-height: 30px;
     text-underline-offset: 3px;
   
 }
+.showmore-st:hover{
+    color: #bab370;
+}
 .smst{
     display: flex;
 }
@@ -91,4 +94,23 @@ line-height: 30px;
 }
 .screen-item > span > svg:hover{
 cursor: pointer;
+}
+.alert-error {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-grow: 1;
+    
+}
+.alert-error >div{
+max-width: 300px;
+margin: 0 auto;
+
+}
+.alert-error >div>img{
+    width: 100%;
+ 
+}
+.alert-error>h1{
+    color: #F3EA28;
 }

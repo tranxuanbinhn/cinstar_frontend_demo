@@ -8,13 +8,42 @@ import { AiOutlineSchedule } from "react-icons/ai";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import { logoutUser } from '~/features/auth/UserSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getAllTheater } from '~/features/theater/TheaterSlice';
+import { getByFind } from '~/features/movie/MovieSlice';
+
+
 function Header(props)
 {
+    const theaters = useSelector((state)=>state.theater.theaters)
+    const loading = useSelector((state)=>state.theater.loading)
     const dispatch = useDispatch();
+    const [search, setSearch] = useState('');
+    const navigate = useNavigate();
+    
+    const handleSearch = () => {
+        if(search.trim())
+        {
+            dispatch(getByFind(search)).then((response)=>{
+                console.log('isssssssss', response)
+            })
+            navigate('/search')
+        }
+    }
+    const handleSetSearch = (e) => {
+        setSearch(e.target.value);
+    }
+    const handleKeyPress = (e) => {
+        if(e.key === 'Enter')
+        {
+            handleSearch();
+        }
+    }
+
     const logout = () => {
         dispatch(logoutUser())
             .then((response) => {
@@ -27,8 +56,16 @@ function Header(props)
                 toast('Logout failed. Please try again.');
             });
     };
-    
-    
+    useEffect(()=>{
+        dispatch(getAllTheater()).then((response)=>{
+            console.log('response', response);
+        })
+    }
+,[])
+if(loading)
+    {
+        return <div><p>loading...</p></div>
+    }
     return(
         <div className='header-ctn'>
             <ToastContainer position='top-center'></ToastContainer>
@@ -49,10 +86,10 @@ function Header(props)
             </div>
             <div className="header-mid-right">
                 <div className="header-search">
-                    <input className='search' type='text' placeholder='Tìm phim, rạp'>
+                    <input onKeyDown={handleKeyPress} value={search} onChange={handleSetSearch} className='search' type='text' placeholder='Tìm phim, rạp'>
                  
                     </input>
-                    <span className='search-button'><CiSearch></CiSearch></span>
+                    <span onClick={handleSearch} className='search-button'><CiSearch></CiSearch></span>
 
                 </div>
                 {props.userInfor ? (
@@ -78,7 +115,19 @@ function Header(props)
         </div>
         <div className="header-under">
             <div className="header-under-left">
-                <ul><span><TiLocation></TiLocation></span> Chọn rạp</ul>
+                <div className='choose-theater'> <a><span><TiLocation></TiLocation></span> Chọn rạp</a>
+               <div className='choose-ctn'>
+               <div className='choose-theater-items'>
+                {theaters && theaters.length>0? (
+                    theaters?.map((theater)=>(
+                        <li key={theater?.id}><Link to={`/theater/${theater.id}`}>{theater?.name}</Link></li>
+                    ))
+                    ):(<div>Error</div>) }
+                    
+              
+                </div>
+               </div>
+                </div>
                <Link to={'/showtimes'}><span><AiOutlineSchedule></AiOutlineSchedule></span> Lịch chiếu</Link> 
             </div>
             <ul className="header-menu">

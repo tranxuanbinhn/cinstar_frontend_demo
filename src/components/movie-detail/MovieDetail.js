@@ -10,22 +10,78 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdOndemandVideo } from "react-icons/md";
 import Popcorn from '../orderpopcorn/popcorn/Popcorn';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetailMovie } from '~/features/movie/MovieSlice';
+import { getShowTimeFromCurrentDateToTwoDate } from '~/features/showtime/ShowtimeSlice';
+import { getDateFromDate, getDayOfWeekFromDate } from '~/features/untility/Ultility';
+import OrderTicket from './OrderTicket';
+import { getAllTheater, getTheaterByCity } from '~/features/theater/TheaterSlice';
 const MovieDetail = () => {
     const detailmovie = useSelector((state)=> state.movie.detailmovie);
     const loadding = useSelector((state)=> state.movie.loadding);
+    const showtimecurrentdate = useSelector((state)=> state.showtimes.showtimecurrentdate);
+    const alltheater = useSelector((state)=> state.theater.theaters);
+    const theaterbycity = useSelector((state)=> state.theater.theaterbycity);
     const dispatch = useDispatch();
+    const [schedule, setSchedule] = useState(getDateFromDate(showtimecurrentdate[0]?.date));
+    const [theatercity, setTheaterCity] = useState('Thành Phố Hồ Chí Minh');
     const {id} = useParams();
+    const handleClickGetDate = (e) => {
+        const selectDate = e.currentTarget.querySelector('span').textContent;
+        setSchedule(selectDate);
+    }
+    const handleUniqueCityTheater = () => {
+        const uniqueCity =  [... new Set( alltheater?.map(item=>item.city))];
+       return uniqueCity;
+    }
+    console.log('showtimecurrentdate',showtimecurrentdate);
+   
     useEffect(()=>{
+   
         dispatch(getDetailMovie(id)).then((response)=>{
-            console.log('detailmovie',detailmovie);
-        })
+ 
+        });
+        dispatch(getShowTimeFromCurrentDateToTwoDate()).then((response)=>{
+   
+        });
+        dispatch(getAllTheater()).then((response)=>{
+
+        });
+       
+ 
     }, [dispatch])
+    useState(()=>{
+        dispatch(getTheaterByCity(theatercity)).then((response)=> {
+            console.log('cityresponse', response);
+        })
+        console.log('city', theatercity);
+    }, [theatercity])
+ 
+  
+   
+    const handleSetCity = (e) => {
+        setTheaterCity(e.target.value);
+    }
+    console.log('theaterbycity',theaterbycity);
+    console.log('theatercity',theatercity);
     if(loadding)
     {
         return <div ><p>Loading</p></div>
+    }
+    
+    const renderDate = () => {
+       const uniqueDate = [...new Set( showtimecurrentdate?.map(item=> item.date))];
+       if(uniqueDate.length>0)
+       {
+            return uniqueDate.map((date, index)=>
+            (   
+                <div onClick={(e)=> handleClickGetDate(e)} key={index} className={(schedule===getDateFromDate(date))?'on-click schedule-item':'schedule-item' }>
+                <span>{getDateFromDate(date)}</span>
+                <span>{getDayOfWeekFromDate(date)}</span> 
+            </div>
+            ))
+       }
     }
     return (
        <div >
@@ -64,28 +120,30 @@ const MovieDetail = () => {
         <div className='schedule'>
             <h1 className='h1-title'>Lịch chiếu</h1>
             <div className='schedule-inner'>
-                <div className='schedule-item'>
-                    <span>06/08</span>
-                    <span>Thứ 7</span>
-                </div>
-                <div className='schedule-item'>
-                    <span>06/08</span>
-                    <span>Thứ 7</span>
-                </div>
-                <div className='schedule-item'>
-                    <span>06/08</span>
-                    <span>Thứ 7</span>
-                </div>
+                {
+                    renderDate()
+                    
+                }
+               
             </div>
         </div>
 
     <div className='movie-detail-list-theater'>
     <div className='title'>
         <h1 className='h1-title'>Danh sách rạp</h1>
-        <div className='dropdown'>
-            <FaLocationDot/>
-            <p>HO CHI MINH</p>
-        </div>
+                <select className='dropdown' onChange={handleSetCity}>
+
+             
+            {
+                handleUniqueCityTheater()&&handleUniqueCityTheater()?.length>0?(
+                    handleUniqueCityTheater()?.map((theater)=>(
+                        <option  value={theater}>{theater}</option>
+                    ))
+                ):(<div></div>)
+            }
+               </select>
+            
+    
     </div>
     <div className='movie-detail-list-screen'>
         <div className='movie-detail-list-screen-title'> <h2>Cinstar</h2> <IoIosArrowUp></IoIosArrowUp></div>
@@ -285,27 +343,7 @@ const MovieDetail = () => {
         <h1 className='h1-title'> Chọn bắp nước</h1>
         <Popcorn></Popcorn>
     </div>
-        <div className='order-ticket-time'>
-            <div className='order-ticket-time-ctn'>
-            <div className='order-ticket-name'>
-                <h1>DEADPOOL VÀ WOLVERINE 2D (T18)</h1>
-                <p>Cinestar Hai Bà Trưng (TP.HCM)</p>
-            </div>
-            <div className='order-ticket-total'>
-                <div className='order-ticket-total-time'>
-                    <p>Thời gian giữ vé</p>
-                    <h3>5:00</h3>
-                </div>
-                <div className='order-ticket-total-amount'>
-                    <div className='order-ticket-total-amount-top'>
-                        <span>Tạm tính </span>
-                        <h3>0 VND</h3>
-                    </div>
-                    <button className='order-ticket-total-button'>Đặt vé</button>
-                </div>
-            </div>
-            </div>
-        </div>
+    <OrderTicket></OrderTicket>
        </div>
     );
 }

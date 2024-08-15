@@ -52,3 +52,7 @@ display: flex;
     padding-bottom: 14px;
     color: #fff;
 }
+.bd-bt-yl{
+    border-bottom:5px solid #f3ea28 ;
+    color: #f3ea28;
+}

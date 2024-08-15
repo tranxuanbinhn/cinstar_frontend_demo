@@ -8,7 +8,121 @@ import { FaEarthAmericas } from "react-icons/fa6";
 import { PiSubtitlesBold } from "react-icons/pi";
 import { BsFillPersonFill } from "react-icons/bs";
 import SliderCommon from '../slider-common/SliderCommon';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getShowtime } from '~/features/showtime/ShowtimeSlice';
+import { getShowingMovie } from '~/features/movie/MovieSlice';
+import { getAllTheater } from '~/features/theater/TheaterSlice';
+import MovieShowtime from './movieshowtime/MovieShowTime';
+
 const Showtime = () => {
+    const [showtimedate, setShowTimeData]  = useState({
+        date:'',
+    });
+    const showtimes = useSelector((state)=> state.showtimes.showtimes);
+    const showingmovie = useSelector((state)=> state.movie.movieshowings);
+    const alltheater = useSelector((state)=> state.theater.theaters);
+    const loadding = useSelector((state)=> state.movie.loadding);
+   
+    const dispatch = useDispatch();
+    const [dates, setDates] = useState([]);
+    const [selectedDate, setSelectedDate] = useState('');
+    const [selectedMovie, setSelectedMovie] = useState(null);
+    const [selectedTheater, setSelectedTheater] = useState(null);
+
+    //--------function select movie------------
+    const handleMovieChange = (event) => {
+        setSelectedMovie(event.target.value);
+    }
+     //--------function select theater------------
+     const handleTheaterChange = (event) => {
+        setSelectedTheater(event.target.value);
+    }
+
+    useEffect(() => {
+        const today = new Date();
+        const next5Days = [];
+
+        for (let i = 0; i < 5; i++) {
+            const nextDate = new Date(today);
+            nextDate.setDate(today.getDate() + i);
+            next5Days.push(nextDate);
+        }
+
+        setDates(next5Days);
+    }, []);
+    useEffect(() => {
+        const today = new Date();
+        setSelectedDate(today);
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0'); 
+        const day = String(today.getDate()).padStart(2, '0');   
+        const formattedDate = `${year}-${month}-${day} 00:00:00`;  
+    
+        setShowTimeData(prestate => ({
+            ...prestate,
+            date: formattedDate
+        }));
+    }, []);
+    useEffect(() => {
+        // Chỉ gọi dispatch khi showtimedate đã được cập nhật
+        console.log('showtimedate', showtimedate);
+        if (showtimedate.date) {
+            dispatch(getShowtime(showtimedate)).then(response => {
+                console.log("response", response);
+            });
+        }
+    }, [showtimedate, dispatch]);
+    useEffect(() => {
+       dispatch(getShowingMovie());
+       dispatch(getAllTheater());
+       
+    }, [dispatch]);
+    
+    const formatDate = (date) => {
+        const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+        return date.toLocaleDateString('vi-VN', options);
+    };
+    const handleDateChange = (event) => {
+        setSelectedDate(event.target.value);
+    };
+    useEffect(()=> {
+        const selectedday = new Date(selectedDate);
+        const year = selectedday.getFullYear();
+        const month = String(selectedday.getMonth() + 1).padStart(2, '0'); // Tháng từ 0-11, nên cần cộng thêm 1
+        const day = String(selectedday.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+        
+
+        console.log('formattedDate', formattedDate);
+        console.log('selectedMovie', selectedMovie);
+
+        console.log('selectedTheater', selectedTheater);
+
+
+        dispatch(getShowtime({formattedDate, selectedMovie, selectedTheater})).then((response)=> {
+            console.log('response is', response);
+        });
+        
+    },[selectedDate, selectedMovie, selectedTheater])
+    if(loadding)
+    {
+        return <div>Loading</div>;
+    }
+    
+    console.log('selectedday', selectedDate);
+    console.log('showtimes', showtimes);
+    const categorizedByMovieId = showtimes.reduce((acc, current) => {
+        const movieId = current.movieId; 
+    
+        if (!acc[movieId]) {
+            acc[movieId] = [];
+        }
+    
+        acc[movieId].push(current);
+        return acc;
+    }, {}); 
+    
     return (
         <div className='showtime'>
             <div className='showtime-select'>
@@ -20,79 +134,72 @@ const Showtime = () => {
                         <span><AiOutlineSchedule /></span>
                     </div>
                     <form> 
-                        <select>
-                            <option value="Thứ 5">Thứ 5</option>
-                        </select>
+                    <select onChange={handleDateChange} value={selectedDate}>
+            {dates.map((date, index) => (
+                <option key={index} value={date.toISOString()}>
+                    {formatDate(date)}
+                </option>
+            ))}
+        </select>
                     </form>
                 </div>
                 <div className='showtime-select-item mw590'>
                     <div className='title'>
                         <h1>
-                            1. Ngày
+                            2. Phim
                         </h1>
                         <span><BiSolidMovie /></span>
                     </div>
                     <form> 
-                        <select>
-                            <option value="Thứ 5">Thứ 5</option>
-                        </select>
+                    <select onChange={handleMovieChange} value={selectedMovie}>
+                        {showingmovie && showingmovie?.length > 0 ? ( 
+                            showingmovie?.map((movie)=> (
+                    
+                            <option key={movie.id} value={movie.id}>{movie.title}</option>
+                     
+                            ))
+                        
+                    ) : (<div>Không có phim nào</div>)}
+                           </select>
                     </form>
                 </div>
                 <div className='showtime-select-item mw290'>
                     <div className='title'>
                         <h1>
-                            1. Ngày
+                            3.Rạp
                         </h1>
                         <span><MdLocationPin /></span>
                     </div>
                     <form> 
-                        <select>
-                            <option value="Thứ 5">Thứ 5</option>
+                        <select onChange={handleTheaterChange} value={selectedTheater}>
+                          {
+                           alltheater && alltheater?.length>0?
+                           (
+                            alltheater.map((theater)=> (
+                                <option key={theater.id} value={theater.id}>{theater.name}</option>
+                            ))
+                           ):
+                           (
+                           <div></div>
+                        )
+                           }
                         </select>
                     </form>
                 </div>
             </div>
             <div className='list-movies'>
-                <div className='movie'>
-                    <div className='movie-left'>
-                        <img src='https://res.cloudinary.com/daubnjjos/image/upload/v1722926234/conan-movie-27_ipdyhd.png'/>
-                        <h1>THÁM TỬ LỪNG DANH CONAN (LT) 2D: NGÔI SAO 5 CÁNH 1 TRIỆU ĐÔ (T13)</h1>
-                        <div className='des'>
-                            <span><CiShoppingTag/><p>Hoat hinh</p></span>
-                            <span><FaRegClock/><p>Hoat hinh</p></span>
-                            <span><FaEarthAmericas/><p>Hoat hinh</p></span>
-                            <span><PiSubtitlesBold/><p>Hoat hinh</p></span>
-                            <span><BsFillPersonFill/><p>Hoat hinh</p></span>
-                        </div>
-                    </div>
-                    <div className='movie-right'>
-                        <div className='theater-movie'>
-                            <p>CINstar</p>
-                            <h1>hai ba trung</h1>
-                            <p>135 Hai Bà Trưng, Phường Bến Nghé ,Quận 1,Thành Phố Hồ Chí Minh</p>
-                        </div>
-                        <div className='screen'>
-                            <p>Standard</p>
-                            <div className='screen-list'>
-                                <a><span>8:00</span></a>
-                                <a><span>8:00</span></a>
-                                <a><span>8:00</span></a>
-                                <a><span>8:00</span></a>
-                                <a><span>8:00</span></a>
-                                <a><span>8:00</span></a>
-                                <a><span>8:00</span></a>
-                                <a><span>8:00</span></a>
-                                <a><span>8:00</span></a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            {
+    Object.keys(categorizedByMovieId).length > 0 ? (
+        Object.keys(categorizedByMovieId).map((movieId) => (
+            <MovieShowtime key={movieId} movie={categorizedByMovieId[movieId]} />
+        ))
+    ) : (
+        <div>Không có dữ liệu</div>
+    )
+}
             </div>
-            <div className='showmore-ctn'>
-            <div className='showtime-sm button'>Xem TẤT cả lịch chiếu</div>
-            </div>
-            <SliderCommon></SliderCommon>
+            
+            <SliderCommon showingmovie={showingmovie}></SliderCommon>
         </div>
     );
 }

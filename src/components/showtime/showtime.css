@@ -43,7 +43,8 @@
 }
 .movie {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
+
     padding-top: 10px;
     padding-bottom: 40px;
     border-bottom: 1px  solid #F8FAFC;
@@ -141,5 +142,7 @@ text-transform: uppercase;
     border-radius: 6px;
     border:1px solid #F8FAFC;
     margin-bottom: 5px;
+    color: #F8FAFC;
+    text-decoration: none;
    
 }

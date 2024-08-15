@@ -293,4 +293,45 @@ margin-left: 5px;
     list-style: none;
     text-align: left;;
   }
-  
+  .choose-theater{
+    position: relative;
+    
+  }
+  .choose-theater>a
+  {
+      margin-left: 0px;
+  }
+  .choose-theater:hover .choose-theater-items{
+    display: flex;
+  }
+  .choose-ctn{
+    position: absolute;
+    width: 1200px;
+    top: 10px;
+    left: -44px;
+    padding-top: 10px;
+  }
+  .choose-theater-items{
+   
+    padding: 20px;
+    
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #0f172a;
+    border: 1px solid rgba(248, 250, 252, .1);
+   
+    display: none;
+
+  }
+  .choose-theater-items>li{
+    width: 380px;
+    flex-grow: 1;
+    margin-bottom: 20px;
+    text-align: left;
+    list-style: none;
+    
+  }
+  .choose-theater-items>li>a{
+    color: #F8FAFC;
+    text-decoration: none;
+  }

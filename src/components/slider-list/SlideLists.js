@@ -15,6 +15,21 @@ const SlideList = ({ nameTitle, movieshowings }) => {
     prevArrow: <Arrow className="slick-prev" direction="prev" />,
     nextArrow: <Arrow className="slick-next" direction="next" />
       };
+      if (movieshowings.length === 1) {
+        // Nếu chỉ có 1 item, không sử dụng slider
+        return (
+          <Link to={`/movie-detail/${movieshowings[0].id}`}>
+          <div className="sliderlist-inner" key={movieshowings[0].id}>
+             <img src={process.env.REACT_APP_API_IMG_URL + movieshowings[0].posterPath} alt={movieshowings[0].title} />
+             <h1 className="white-no">{movieshowings[0].title}</h1>
+             <div className="trailer-order">
+                 <a><IoIosPlayCircle />Xem trailer</a>
+                 <button className="button">Đặt vé</button>
+             </div>
+         </div>
+        </Link>
+        );
+    }
       return (
         <div className="SliderList">
          <h1>{nameTitle}</h1>

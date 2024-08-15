@@ -1,26 +1,22 @@
-import MovieDetail from "~/components/movie-detail/MovieDetail";
-import Header from "~/components/header/Header";
 import FooterCP from "~/components/footer/FooterCP";
+import Header from "~/components/header/Header";
+import PromtionComponent from "~/components/promotion/PromotionComponent";
 import '../components/utility/utility.css';
-import OrderTicket from "~/components/movie-detail/OrderTicket";
-
-function MovieDetailPage()
+import { Person } from "~/components/persionalinformation/Person";
+function PersonPage()
 {
-
-
     return (
         <div>
         <Header></Header>
         <div className="background-color mt-1348">
             <div className="container">
-            <MovieDetail></MovieDetail>
+            <Person></Person>
             </div>
        
         </div>
-
        
        <FooterCP></FooterCP>
         </div>
     );
 }
-export default MovieDetailPage;
+export default PersonPage;

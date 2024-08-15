@@ -55,6 +55,47 @@ export const getDetailMovie = createAsyncThunk(
         }
     }
 )
+
+export const getUpcommingMovieByTheater = createAsyncThunk(
+  'movie/upcommingmovietheater',
+  async (id,thunkAPI)=>{
+      try{
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/movie/showing/${id}`);
+          return response.data;
+      }
+      catch(error)
+      {
+          return thunkAPI.rejectWithValue(error.response?.data);
+      }
+  }
+)
+export const getByFind = createAsyncThunk(
+  'movie/getbyfind',
+  async (value,thunkAPI)=>{
+      try{
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/movie/findmovie?keyword=${value}`);
+
+          return {theatersfind:response.data.theaterDTOs, moviesfind:response.data.movieDTOs};
+      }
+      catch(error)
+      {
+          return thunkAPI.rejectWithValue(error.response?.data);
+      }
+  }
+)
+export const getNowshowingMovieByTheater = createAsyncThunk(
+  'movie/nowshowingmovietheater',
+  async (id,thunkAPI)=>{
+      try{
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/movie/upcomming/${id}`);
+          return response.data;
+      }
+      catch(error)
+      {
+          return thunkAPI.rejectWithValue(error.response?.data);
+      }
+  }
+)
 const MovieSlice = createSlice({
    name:'movie',
     initialState:{
@@ -64,7 +105,10 @@ const MovieSlice = createSlice({
         movieshowings:null,
         movieupcommings:null,
         loading:null,
-        detailmovie:null
+        detailmovie:null,
+        movietheaters:null,
+        moviesfind:null,
+        theatersfind:null
 
 
     },
@@ -116,6 +160,48 @@ const MovieSlice = createSlice({
        
       })
       .addCase(getDetailMovie.pending,(state, action)=>{
+        state.loading = true;
+      })
+      .addCase(getUpcommingMovieByTheater.fulfilled, (state, action)=>{
+        state.movietheaters = action?.payload;
+        state.loading = false;
+       
+      })
+      .addCase(getUpcommingMovieByTheater.rejected, (state, action)=>{
+        state.error = action.payload?.message;
+        state.loading = false;
+       
+      })
+      .addCase(getUpcommingMovieByTheater.pending,(state, action)=>{
+        state.loading = true;
+      })
+      .addCase(getNowshowingMovieByTheater.fulfilled, (state, action)=>{
+        state.movietheaters = action?.payload;
+        state.loading = false;
+       
+      })
+      .addCase(getNowshowingMovieByTheater.rejected, (state, action)=>{
+        state.error = action.payload?.message;
+        state.loading = false;
+       
+      })
+      .addCase(getNowshowingMovieByTheater.pending,(state, action)=>{
+        state.loading = true;
+      })
+      .addCase(getByFind.fulfilled, (state, action)=>{
+        const {moviesfind, theatersfind} = action?.payload;
+        state.moviesfind = moviesfind;
+        state.theatersfind = theatersfind;
+
+        state.loading = false;
+       
+      })
+      .addCase(getByFind.rejected, (state, action)=>{
+        state.error = action.payload?.message;
+        state.loading = false;
+       
+      })
+      .addCase(getByFind.pending,(state, action)=>{
         state.loading = true;
       })
     }

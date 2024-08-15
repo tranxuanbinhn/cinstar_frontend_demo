@@ -3,17 +3,36 @@ import userSlice from '~/features/auth/UserSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 import MovieSlice from '~/features/movie/MovieSlice';
+import showtimeSlice from '~/features/showtime/ShowtimeSlice';
+import TheaterSlice from '~/features/theater/TheaterSlice';
 
 
 const persistConfig = {
     key: 'root',
     storage,
   };
+  const persistTheaterConfig = {
+    key: 'theater',
+    storage,
+  };
+  const persistMovieConfig = {
+    key: 'movie',
+    storage,
+  };
+  const persistShowtimeConfig = {
+    key: 'showtime',
+    storage,
+  };
 const persistedReducer = persistReducer(persistConfig, userSlice.reducer);
+const persistedTheaterReducer = persistReducer(persistTheaterConfig, TheaterSlice.reducer);
+const persistedMovieReducer = persistReducer(persistMovieConfig, MovieSlice.reducer);
+const persistedShowtimeReducer = persistReducer(persistShowtimeConfig, showtimeSlice.reducer);
 const store = configureStore({
     reducer:{
         user:persistedReducer,
-        movie:MovieSlice.reducer
+        movie:persistedMovieReducer,
+        showtimes:persistedShowtimeReducer,
+        theater:persistedTheaterReducer
     },
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware({

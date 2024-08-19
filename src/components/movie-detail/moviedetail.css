@@ -326,7 +326,34 @@ margin-top: 15px;
     margin-left: calc(-50vw + 47%);
     background-color: #0f172a;
     padding: 10px;
+  
+}
+.tableseat td{
+width: 17px ;
+font-size: 12px !important;
+}
+.dl-none{
+    display: none !important;
+}
+.order-all-ctn{
     display: none;
+}
+.sizetoast{
+    max-width: 300px;
+}
+.selected{
+    background: #f3ea28 !important;
+}
+.w30{
+    width: 30px !important;
+    background-color: #f40785 !important;
+}
+.zzz{
+    background-color: #f40785 !important;
+}
+.bd-yl{
+    border: 1px solid #f3ea28 !important;
+    
 }
 .on-click{
     background-color: #f3ea28;

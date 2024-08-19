@@ -11,6 +11,7 @@ import SearchPage from '../pages/SearchPage';
 import PromotionPage from '../pages/PromotionPage';
 import LoginPage from '../pages/LoginPage';
 import PersonPage from '~/pages/PersonPage';
+import CheckOutPage from '~/pages/CheckoutPage';
 function App() {
   return (
     <div className="App ">
@@ -26,6 +27,8 @@ function App() {
         <Route path="/promotion" element={<PromotionPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/account/account-profile/" element={<PersonPage/>}/>
+        <Route path="/checkout/" element={<CheckOutPage/>}/>
+
         </Routes>
        
         </BrowserRouter>

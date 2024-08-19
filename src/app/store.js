@@ -5,6 +5,10 @@ import { persistStore, persistReducer } from 'redux-persist';
 import MovieSlice from '~/features/movie/MovieSlice';
 import showtimeSlice from '~/features/showtime/ShowtimeSlice';
 import TheaterSlice from '~/features/theater/TheaterSlice';
+import TicketSlice from '../features/ticket/TicketSlice';
+import SeatSlice from '~/features/seatslice/SeatSlice';
+import FoodSlice from '~/features/food/FoodSlice';
+import ScreenSlice from '~/features/screen/ScreenSlice';
 
 
 const persistConfig = {
@@ -32,7 +36,12 @@ const store = configureStore({
         user:persistedReducer,
         movie:persistedMovieReducer,
         showtimes:persistedShowtimeReducer,
-        theater:persistedTheaterReducer
+        theater:persistedTheaterReducer,
+        ticket:TicketSlice.reducer,
+        seat:SeatSlice.reducer,
+        food:FoodSlice.reducer,
+        screen:ScreenSlice.reducer
+ 
     },
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware({

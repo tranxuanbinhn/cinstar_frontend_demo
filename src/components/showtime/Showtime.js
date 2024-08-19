@@ -66,10 +66,10 @@ const Showtime = () => {
     }, []);
     useEffect(() => {
         // Chỉ gọi dispatch khi showtimedate đã được cập nhật
-        console.log('showtimedate', showtimedate);
+   
         if (showtimedate.date) {
             dispatch(getShowtime(showtimedate)).then(response => {
-                console.log("response", response);
+      
             });
         }
     }, [showtimedate, dispatch]);
@@ -109,10 +109,8 @@ const Showtime = () => {
     {
         return <div>Loading</div>;
     }
-    
-    console.log('selectedday', selectedDate);
-    console.log('showtimes', showtimes);
-    const categorizedByMovieId = showtimes.reduce((acc, current) => {
+
+    const categorizedByMovieId = showtimes?.reduce((acc, current) => {
         const movieId = current.movieId; 
     
         if (!acc[movieId]) {
@@ -189,7 +187,7 @@ const Showtime = () => {
             </div>
             <div className='list-movies'>
             {
-    Object.keys(categorizedByMovieId).length > 0 ? (
+   categorizedByMovieId && Object.keys(categorizedByMovieId).length > 0 ? (
         Object.keys(categorizedByMovieId).map((movieId) => (
             <MovieShowtime key={movieId} movie={categorizedByMovieId[movieId]} />
         ))

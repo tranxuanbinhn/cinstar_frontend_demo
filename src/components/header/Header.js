@@ -118,7 +118,7 @@ if(loading)
                 <div className='choose-theater'> <a><span><TiLocation></TiLocation></span> Chọn rạp</a>
                <div className='choose-ctn'>
                <div className='choose-theater-items'>
-                {theaters && theaters.length>0? (
+                {theaters && theaters?.length>0? (
                     theaters?.map((theater)=>(
                         <li key={theater?.id}><Link to={`/theater/${theater.id}`}>{theater?.name}</Link></li>
                     ))

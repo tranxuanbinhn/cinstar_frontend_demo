@@ -15,7 +15,7 @@ const SlideList = ({ nameTitle, movieshowings }) => {
     prevArrow: <Arrow className="slick-prev" direction="prev" />,
     nextArrow: <Arrow className="slick-next" direction="next" />
       };
-      if (movieshowings.length === 1) {
+      if (movieshowings?.length === 1) {
         // Nếu chỉ có 1 item, không sử dụng slider
         return (
           <Link to={`/movie-detail/${movieshowings[0].id}`}>
@@ -37,8 +37,8 @@ const SlideList = ({ nameTitle, movieshowings }) => {
          
           <Slider {...settings}>
             {
-               movieshowings && movieshowings.length > 0 ? (
-                movieshowings.map((movieshowing) => (
+               movieshowings && movieshowings?.length > 0 ? (
+                movieshowings?.map((movieshowing) => (
                    <Link to={`/movie-detail/${movieshowing.id}`}>
                      <div className="sliderlist-inner" key={movieshowing.id}>
                         <img src={process.env.REACT_APP_API_IMG_URL + movieshowing.posterPath} alt={movieshowing.title} />

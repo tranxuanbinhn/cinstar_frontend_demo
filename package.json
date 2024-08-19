@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "babel-plugin-module-resolver": "^5.0.2",
     "node-polyfill-webpack-plugin": "^4.0.0",
     "path-browserify": "^1.0.1",

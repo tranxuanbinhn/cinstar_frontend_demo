@@ -25,6 +25,31 @@ export const getShowtime = createAsyncThunk(
         }   
     }
 )
+export const getShowtimeToOrder = createAsyncThunk(
+    'showtimes/getshowtimetoorder', async ({formattedDate, selectedMovie, selectedTheater},thunkAPI)=>
+    { 
+        try{
+            const encodedDate = encodeURIComponent(formattedDate);
+            let url = `/api/user/showtime?date=${encodedDate}`;
+            if(selectedMovie!=null && selectedTheater==null)
+            {
+                url = `/api/user/showtime?date=${encodedDate}&movieid=${selectedMovie}`;
+            }
+            if(selectedMovie!=null && selectedTheater!=null)
+            {
+                url = `/api/user/showtime?date=${encodedDate}&movieid=${selectedMovie}&theaterid=${selectedTheater}`;
+            }
+            console.log('url', url);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}${url}`);
+            
+            return {selectedTheater,showtimefororder:response.data};
+        }
+        catch(error)
+        {
+           return thunkAPI.rejectWithValue(error);
+        }   
+    }
+)
 export const getThreeShowtimeByMovie = createAsyncThunk(
     'showtimes/getthreeshowtime', async (id,thunkAPI)=>
     {
@@ -62,7 +87,8 @@ const showtimeSlice = createSlice(
             loading:null,
             error:null,
             threeshowtimes:{},
-            showtimecurrentdate:null
+            showtimecurrentdate:null,
+            showtimefororder:{}
         },
         reducers:{},
         extraReducers: (builder)=>{
@@ -99,6 +125,20 @@ const showtimeSlice = createSlice(
                
             })
             .addCase(getShowTimeFromCurrentDateToTwoDate.rejected, ( state, action)=>{
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addCase(getShowtimeToOrder.pending, ( state)=>{
+                state.loading = true;
+            })
+            .addCase(getShowtimeToOrder.fulfilled, ( state, action)=>{
+                state.loading = false;
+               const {selectedTheater,showtimefororder} = action.payload;
+                state.showtimefororder[selectedTheater] = showtimefororder;
+    
+               
+            })
+            .addCase(getShowtimeToOrder.rejected, ( state, action)=>{
                 state.loading = false;
                 state.error = action.payload;
             });

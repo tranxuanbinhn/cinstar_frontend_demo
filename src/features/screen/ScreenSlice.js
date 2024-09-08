@@ -7,9 +7,12 @@ export const getScreenById = createAsyncThunk(
     async (id,thunkAPI)=>{
         try{
            
+          if(id)
+          {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/screen/getbyid/${id}`);
   
             return response.data;
+          }
         }
         catch(error)
         {

@@ -6,12 +6,19 @@
 .checkout-ctn{
     padding-top: 100px;
     text-align: left;
+    padding-bottom: 100px;
 }
 .checkout-title{
     display: flex;
     margin-top: 30px;
     gap: 5px;
 
+}
+.display-block{
+    display: block;
+}
+.display-flex{
+    display: flex;
 }
 .checkout-title-innter{
     display: flex;
@@ -53,6 +60,61 @@
     padding: 10px;
     margin-bottom: 20px;
 }
+.list-payment{
+
+    display: flex;
+    padding-top: 10px;
+    flex-direction: column;
+}
+.payment-item h2{
+    font-size: 16px;
+    text-align: center;
+    font-family: 'Josefin Sans';
+}
+.payment-item{
+    width: 90%;
+    border: 1px solid #f8fafc;
+    padding: 20px;
+    color: #f8fafc;
+}
+.payment-item:hover{
+    border:1px solid #f3ea28;
+    cursor: pointer;
+
+   
+}
+.display-none{
+    display: none !important;
+}
+.co-yl{
+    color: #f3ea28 !important;
+}
+.payment-button button:hover{
+    cursor: pointer;
+}
+.payment-button{
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.bg-c{
+    background-color: #ccc !important;
+}
+.payment-choose{
+    background-color: #f8fafc;
+    color: #000000 !important;
+
+}
+.payment-button button{
+   width: 47%;
+   padding: 15px;
+   font-family: 'Anton';
+   color: black;
+   background-color: #f3ea28;
+   border-radius: 4px;
+}
+
 .policy-in
 {
     flex-direction: row !important;
@@ -66,7 +128,7 @@
     text-transform: uppercase;
 }
 .checkout-information-right{
-    padding: 10px ;
+    padding: 20px ;
     border-radius: 5px;
     color: #f8fafc;
     font-family:  'Josefin Sans';
@@ -75,6 +137,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    background-color: #36c;
 }
 .infor-title{
   
@@ -94,7 +157,7 @@
     border-radius: 3px;
     color: black;
 
-}.infor-title  h2{
+}.fw-600{
     font-weight: 600;
 }
 .checkout-information-right .infor-theater{

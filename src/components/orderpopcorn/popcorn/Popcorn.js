@@ -6,7 +6,7 @@ import { getAllFood } from '~/features/food/FoodSlice';
 const Popcorn = ({setIncreaseFood, setDecreaseFood, quantityFood}) => {
     const dispatch = useDispatch();
     const food = useSelector((state)=> state.food.allfood);
-    console.log('setIncreaseFood',setIncreaseFood)
+     
     useEffect(()=>{
         dispatch(getAllFood());
     }, [dispatch]);
@@ -24,7 +24,7 @@ const Popcorn = ({setIncreaseFood, setDecreaseFood, quantityFood}) => {
     }
 
     const organizedFood = categoryFood(food);
-    console.log('quantityFood',quantityFood)
+     
 
     return (
         <div>

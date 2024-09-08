@@ -2,11 +2,6 @@ import './showtime.css';
 import { AiOutlineSchedule } from "react-icons/ai";
 import { BiSolidMovie } from "react-icons/bi";
 import { MdLocationPin } from "react-icons/md";
-import { CiShoppingTag } from "react-icons/ci";
-import { FaRegClock } from "react-icons/fa";
-import { FaEarthAmericas } from "react-icons/fa6";
-import { PiSubtitlesBold } from "react-icons/pi";
-import { BsFillPersonFill } from "react-icons/bs";
 import SliderCommon from '../slider-common/SliderCommon';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -64,12 +59,15 @@ const Showtime = () => {
             date: formattedDate
         }));
     }, []);
+    console.log('showtimes', showtimes)
     useEffect(() => {
-        // Chỉ gọi dispatch khi showtimedate đã được cập nhật
+ 
    
         if (showtimedate.date) {
+            console.log('showtimedate.date', showtimedate.date)
+            console.log('date', showtimedate)
             dispatch(getShowtime(showtimedate)).then(response => {
-      
+                console.log('showtimedate', response)
             });
         }
     }, [showtimedate, dispatch]);
@@ -120,7 +118,7 @@ const Showtime = () => {
         acc[movieId].push(current);
         return acc;
     }, {}); 
-    
+    console.log('categorizedByMovieId',categorizedByMovieId)
     return (
         <div className='showtime'>
             <div className='showtime-select'>
@@ -189,7 +187,7 @@ const Showtime = () => {
             {
    categorizedByMovieId && Object.keys(categorizedByMovieId).length > 0 ? (
         Object.keys(categorizedByMovieId).map((movieId) => (
-            <MovieShowtime key={movieId} movie={categorizedByMovieId[movieId]} />
+            <MovieShowtime movieId={movieId} movie={categorizedByMovieId[movieId]} />
         ))
     ) : (
         <div>Không có dữ liệu</div>

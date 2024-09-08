@@ -3,7 +3,7 @@ import Arrow from "./Arrow";
 import './slidelist.css';
 import { IoIosPlayCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
-const SlideList = ({ nameTitle, movieshowings }) => {
+const SlideList = ({ nameTitle, movieshowings,linkmovie }) => {
 
     const settings = {
         
@@ -18,8 +18,8 @@ const SlideList = ({ nameTitle, movieshowings }) => {
       if (movieshowings?.length === 1) {
         // Nếu chỉ có 1 item, không sử dụng slider
         return (
-          <Link to={`/movie-detail/${movieshowings[0].id}`}>
-          <div className="sliderlist-inner" key={movieshowings[0].id}>
+          <Link to={`/movie-detail/${movieshowings[0].id}` } >
+          <div className="sliderlist-inner no-un" key={movieshowings[0].id} >
              <img src={process.env.REACT_APP_API_IMG_URL + movieshowings[0].posterPath} alt={movieshowings[0].title} />
              <h1 className="white-no">{movieshowings[0].title}</h1>
              <div className="trailer-order">
@@ -51,14 +51,14 @@ const SlideList = ({ nameTitle, movieshowings }) => {
                    </Link>
                 ))
             ) : (
-                <div>No movies available</div>
+              <div style={{ color: '#FFFFFF' }}><h4>Không có kết quả</h4></div>
             )
             }
         
        
           </Slider>
 
-    <a ><div className="viewmore button">Xem thêm</div></a>
+    <Link to={'/movie/showing'} ><div className="viewmore button">Xem thêm</div></Link>
         </div>
       );
     }

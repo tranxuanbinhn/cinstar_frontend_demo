@@ -1,0 +1,142 @@
+.person-ctn{
+    display:  flex;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.person-left{
+    max-width: 300px;
+
+    flex-grow: 1;
+    border-radius: 6px;
+    padding: 20px;
+    text-align: left;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: 'Josefin Sans';
+    color: #f8fafc;
+}
+.logout-button{
+    color: #9c9c9c;
+}
+.person-right{
+    max-width: 900px;
+    flex-grow: 1;
+    display: none;
+}
+.displayblock{
+    display: block !important;
+}
+.person-infor div{
+    cursor: pointer;
+}
+.yl{
+    color: #f3ea28 !important;
+}
+.infor-history-order{
+    max-width: 900px;
+    flex-grow: 1;
+    display: none;
+    padding: 20px;
+    padding-bottom: 270px;
+}
+.infor-history-order h1{
+    color: #f8fafc;
+
+    font-size: 30px;
+    font-family: 'Anton';
+    text-transform: uppercase;
+    text-align: left;
+}
+.infor-history-order-inner{
+    margin-top: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 4px;
+}
+.infor-history-order-inner table {
+    width: 100%;
+  
+    font-size: 14px;
+    font-family: 'Josefin Sans';
+
+}
+.infor-history-order-inner table tr{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    color: #f8fafc;
+}
+.infor-history-order-inner table tr td{
+    color: #9c9c9c !important;
+}
+.person-right h1{
+    font-size: 30px;
+    font-family: 'Anton';
+    text-align: left;
+    color: #f8fafc;
+    text-transform: uppercase;
+}
+.person-right-change{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.w-100
+{
+    width: 100% !important;
+}
+.person-right-change form{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 15px;
+    background-color: #f8fafc;
+}
+.person-right-change form h1{
+    color: #000;
+}
+.person-right-change form button{
+    max-width: 120px;
+    padding: 8px 12px;
+    background-color: #e2e8f0;
+}
+.person-right-change form div{
+    display: flex;
+   
+}
+.person-right-change-inner {
+    display: flex;
+    
+    flex-wrap: wrap;
+    gap: 10px;
+    
+}
+.person-right-change-inner div
+{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 49%;
+    gap: 5px;
+}
+.person-right-change-inner div span{
+    color: #000;
+    font-family: 'Josefin Sans';
+    font-size: 16px;
+}
+.person-right-change-inner div input{
+    padding: 14px;
+}
+.logout-button{
+    border-top: 1px solid #f8fafc;
+    padding-top: 10px;
+}
+.person-infor{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

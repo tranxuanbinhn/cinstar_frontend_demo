@@ -15,21 +15,57 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAllTheater } from '~/features/theater/TheaterSlice';
 import { getByFind } from '~/features/movie/MovieSlice';
+import { decrementSecond, setcount, setcount300 } from '~/features/order/OrderSlice';
+import ChatUser from '../chat/ChatUser';
+
 
 
 function Header(props)
 {
     const theaters = useSelector((state)=>state.theater.theaters)
     const loading = useSelector((state)=>state.theater.loading)
+    const userInfor = useSelector((state)=> state.user.userInfor);
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
+    const count = useSelector((state)=>state.order.count);
+    const second = useSelector((state)=>state.order.time);
+    const getid = useSelector((state)=> state.movie.id);
+
+    //useEffect(()=> {
+
+    //    let countdown;
+    //    if(count && second>0)
+    //    {
+    //        countdown = setInterval(() => {
+              
+    //              dispatch(decrementSecond());
+     
+                
+    //          }, 1000);
+    //    }
+    //    if (count && second === 0) {
+
+    //        clearInterval(countdown);
+    //        toast('Hết thời gian chờ');
+
+    //        dispatch(setcount(false));
+
+    //        navigate(`/movie-detail/${getid}`);
+            
+
+    //    }
+        
+      
+    //    return () => clearInterval(countdown);
+    //   }, [count,second])
+
     
     const handleSearch = () => {
         if(search.trim())
         {
             dispatch(getByFind(search)).then((response)=>{
-                console.log('isssssssss', response)
+
             })
             navigate('/search')
         }
@@ -47,18 +83,19 @@ function Header(props)
     const logout = () => {
         dispatch(logoutUser())
             .then((response) => {
-            
+             
+                
                     window.location.href = '/';
               
             })
             .catch((error) => {
-                console.error('Logout error:', error);
+               
                 toast('Logout failed. Please try again.');
             });
     };
     useEffect(()=>{
         dispatch(getAllTheater()).then((response)=>{
-            console.log('response', response);
+    
         })
     }
 ,[])
@@ -68,21 +105,19 @@ if(loading)
     }
     return(
         <div className='header-ctn'>
-            <ToastContainer position='top-center'></ToastContainer>
+            <ChatUser></ChatUser>
+           <div> <ToastContainer position='top-center'></ToastContainer></div>
               <div className="header">
         <div className="header-top">
-            <a className="header-logo">
+            <Link to={'/'} className="header-logo">
                 <img src='https://res.cloudinary.com/daubnjjos/image/upload/v1722827207/header-logo_t4ycje.png' />
-            </a>
+            </Link>
             <div className="header-action ">
                 <a className="header-action-order1 button-primary">
                 <IoTicketOutline></IoTicketOutline>
-                <span>ĐẶT VÉ NGAY</span>
+               <Link to={'/order'}><span>ĐẶT VÉ NGAY</span></Link> 
             </a>
-            <a className="header-action-order2 button-primary">
-           <LuPopcorn/>
-            <span>ĐẶT BẮP NƯỚC</span>
-            </a>
+       
             </div>
             <div className="header-mid-right">
                 <div className="header-search">
@@ -92,13 +127,13 @@ if(loading)
                     <span onClick={handleSearch} className='search-button'><CiSearch></CiSearch></span>
 
                 </div>
-                {props.userInfor ? (
+                {userInfor ? (
                             <div className="header-user-info">
                                 <div className='hvb'>
-                                <span className='cl-main hv'>Xin chào, {props.userInfor.username}</span>
+                                <span className='cl-main hv'>Xin chào, {userInfor?.username}</span>
                                
                                <div className='infor'>
-                                    <div> <IoPersonCircleSharp /><a>Trang cá nhân</a></div>
+                                    <div> <IoPersonCircleSharp /><Link style={{color:'#f8f0fa'}} to={'/account/account-profile'}>Trang cá nhân</Link></div>
                                     <div onClick={logout}><TbLogout2></TbLogout2><a>Đăng xuất</a></div>
                                 </div>
                                </div>
@@ -115,7 +150,9 @@ if(loading)
         </div>
         <div className="header-under">
             <div className="header-under-left">
-                <div className='choose-theater'> <a><span><TiLocation></TiLocation></span> Chọn rạp</a>
+                <div className='choose-theater'>
+                        <div className='bright'></div>
+                     <a className='hover-a'><span><TiLocation></TiLocation></span> Chọn rạp</a>
                <div className='choose-ctn'>
                <div className='choose-theater-items'>
                 {theaters && theaters?.length>0? (

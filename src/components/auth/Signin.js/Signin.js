@@ -25,7 +25,7 @@ const Login = () => {
        
             window.location.href = '/';
         }).catch((error)=>{
-            toast("Error"+error);
+            toast("Some error");
         })
 
         
@@ -33,7 +33,7 @@ const Login = () => {
     return ( 
      
          <div className='form'>
-            <ToastContainer  position='top-center'></ToastContainer>
+   
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className='filed'>
                 <label>User name<span>*</span></label>

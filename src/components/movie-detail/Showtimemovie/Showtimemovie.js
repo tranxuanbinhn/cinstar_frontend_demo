@@ -12,14 +12,14 @@ const ShowTimeMovie = ({date,movieid, theaterid, time, onSetTime}) => {
     const dispatch = useDispatch();
     const showtime = useSelector((state)=>state.showtimes.showtimefororder[theaterid]);
  
-    console.log({date,movieid, theaterid});
+    console.log('date, movied, theaterid',{date,movieid, theaterid});
     useEffect(()=>{
 
             const currentyear = new Date();
             const year = currentyear.getFullYear();
-            const datemonth = date.split("/");
-            const month = datemonth[1];
-            const day = datemonth[0]; 
+            const datemonth = date?.split("/");
+            const month = datemonth?datemonth[1]:'';
+            const day = datemonth?datemonth[0]:''; 
             const fulldate = year + '-' + month + '-' + day;
          
 

@@ -40,7 +40,10 @@ const SliderPage = () => {
                 </div>
                 
                 <div>
-                  <img src='https://res.cloudinary.com/daubnjjos/image/upload/v1722841944/1215x365_5__r7qq7z.jpg'/>
+                  <img src='https://res.cloudinary.com/daubnjjos/image/upload/v1722842113/bay_phhjlv.png'/>
+                </div>
+                <div>
+                  <img src='https://res.cloudinary.com/daubnjjos/image/upload/v1725768960/chang-nu-phi-cong_dw9wzn.webp'/>
                 </div>
         
 

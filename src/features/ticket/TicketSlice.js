@@ -16,16 +16,36 @@ export const getAllTicket = createAsyncThunk(
         }
     }
   )
+  
 const TicketSlice = createSlice({
     name:'ticket',
     initialState:{
         allticket:null,
         loading:null,
-        error:null
+        error:null,
+        ticketrelation:{}
     },
-    reducers:{
+    reducers: {
+        saveticketrelation: (state, action) => {
+            const { seatId, ...rest } = action.payload;
+            console.log('action.payload', action.payload);
+        
+         
+            if (!state.ticketrelation[seatId]) {
+                state.ticketrelation[seatId] = {};
+            }
+        
 
+            state.ticketrelation[seatId] = {
+                ...state.ticketrelation[seatId],
+                ...rest,
+            };
+        },
+        deleteticketrelation:(state)=>{
+            state.ticketrelation = {};
+        }
     },
+    
     extraReducers:(builder)=>{
         builder
         .addCase(getAllTicket.pending, (state)=>{
@@ -48,5 +68,5 @@ const TicketSlice = createSlice({
        
     }
 });
-
+export const {saveticketrelation,deleteticketrelation} = TicketSlice.actions;
 export default TicketSlice;   

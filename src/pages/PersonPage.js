@@ -5,6 +5,7 @@ import '../components/utility/utility.css';
 import { Person } from "~/components/persionalinformation/Person";
 function PersonPage()
 {
+
     return (
         <div>
         <Header></Header>

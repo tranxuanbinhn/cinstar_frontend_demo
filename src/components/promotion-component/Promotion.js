@@ -1,6 +1,7 @@
 import Slider from "react-slick";
 import Arrow from "../utility/Arrow";
 import './promotion.css';
+import { Link } from "react-router-dom";
 const Promotion = () => {
     const settings = {
         
@@ -21,14 +22,14 @@ return (
             <img src="https://res.cloudinary.com/daubnjjos/image/upload/v1722851069/km-m-2_krxawh.jpg"/>
         </div>
         <div className="promotion-inner">
-            <img src="https://res.cloudinary.com/daubnjjos/image/upload/v1722851069/km-m-2_krxawh.jpg"/>
+            <img src="https://res.cloudinary.com/daubnjjos/image/upload/v1724389343/monday_1__k0nqli.jpg"/>
         </div>
         <div className="promotion-inner">
-            <img src="https://res.cloudinary.com/daubnjjos/image/upload/v1722851069/km-m-2_krxawh.jpg"/>
+            <img src="https://res.cloudinary.com/daubnjjos/image/upload/v1724389343/C_TEN_oiyfdd.png"/>
         </div>
         </Slider>
         <div className="mb50"></div>
-        <a> <div className="all-promotion button">TẤT CẢ ƯU ĐÃI</div></a>
+        <Link to={'/promotion'}> <div className="all-promotion button">TẤT CẢ ƯU ĐÃI</div></Link>
 </div>
 );
 }

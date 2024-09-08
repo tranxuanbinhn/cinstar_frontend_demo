@@ -6,10 +6,13 @@ export const getAllSeatByScreen = createAsyncThunk(
     'seat/getallbyscreen',
     async (id,thunkAPI)=>{
         try{
-            console.log('id screen',id);
+            if(id)
+            {
+                
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/seat/findbyscreen/${id}`);
   
             return response.data;
+            }
         }
         catch(error)
         {

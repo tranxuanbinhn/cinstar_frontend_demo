@@ -1,6 +1,8 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import axiosInstance from '~/api/axiosInstance';
+
 
 
 export const registerUser = createAsyncThunk(
@@ -16,12 +18,13 @@ export const registerUser = createAsyncThunk(
                   const body = JSON.stringify(userdata);
                 
                 const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/signup`, body, config);
-                console.log('response.data:', response.data);
+                 
+               
                 return response.data;
             }
             catch(error)
             {
-                console.log('error.response.data', error.response.data);
+                 
                 return thunkAPI.rejectWithValue(error.response?.data);
             }
         }
@@ -38,9 +41,10 @@ export const logoutUser = createAsyncThunk(
               Authorization: `Bearer ${accessToken}`, // Use the stored access token
             },
           };
-          console.log('log', config)
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/signout`, null, config);
+           
+        const response = await axiosInstance.post(`${process.env.REACT_APP_API_URL}/api/auth/signout`, null, config);
         localStorage.clear();
+
         return response.data;
       } catch (error) {
         return thunkAPI.rejectWithValue(error.response?.data);
@@ -58,16 +62,94 @@ export const loginUser = createAsyncThunk(
                     }
                   }
                   const body = JSON.stringify(userdata);
-                console.log('userdata',userdata);
+                 
                 const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/signin`, body, config);
                 
        
-                console.log('response.data:', response.data);
+                 
                 return response.data;
             }
             catch(error)
             {
-                console.log('error.response.data', error.response.data);
+                 
+                return thunkAPI.rejectWithValue(error.response?.data);
+            }
+        }
+  
+)  ;
+export const getById = createAsyncThunk(
+    'user/getbyid',
+ 
+        async (userName, thunkAPI) => { 
+            try{
+                const config = {
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                  }
+                
+                const response = await axiosInstance.get(`${process.env.REACT_APP_API_URL}/api/information/getbyid/${userName}`);
+                
+       
+                 
+                return response.data;
+            }
+            catch(error)
+            {
+                 
+                return thunkAPI.rejectWithValue(error.response?.status);
+            }
+        }
+  
+)  ;
+
+
+export const updateUser = createAsyncThunk(
+    'user/update',
+ 
+        async (data, thunkAPI) => { 
+            try{
+                const config = {
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                  }
+                 
+                const response = await axiosInstance.put(`${process.env.REACT_APP_API_URL}/api/information/update/${data?.userName}`, data);
+                
+       
+                 
+                return response.data;
+            }
+            catch(error)
+            {
+                 
+                return thunkAPI.rejectWithValue(error.response?.data);
+            }
+        }
+  
+)  ;
+
+export const changePassword = createAsyncThunk(
+    'user/changepass',
+ 
+        async (data, thunkAPI) => { 
+            try{
+                const object = {
+                    oldPassword:data.oldPassword,
+                    password:data.password,
+                }
+                
+                
+                const response = await axiosInstance.put(`${process.env.REACT_APP_API_URL}/api/information/changepassword/${data?.userName}`, object);
+                
+       
+                 
+                return response.data;
+            }
+            catch(error)
+            {
+                 
                 return thunkAPI.rejectWithValue(error.response?.data);
             }
         }
@@ -81,10 +163,36 @@ const userSlice = createSlice({
         error:null,
         message:null,
         accessToken:null,
-        refreshToken:null
+        refreshToken:null,
+        userdetail:null,
+        alluser:null,
+        pageSize:5,
+        useradd:{
+            error:null,
+            data:null,
+            loading:null
+        },
+        deleteUser:{
+            status:false,
+            error:null
+        }
     },
     reducers:{
-
+        resetUserAdd:(state, action)=>{
+            const data = {
+                error:null,
+                data:null,
+                loading:null
+            }
+          state.useradd=data
+        },
+        resetUserDelete:(state, action)=>{
+            const data = {
+                error:null,
+                status:false
+            }
+          state.useradd=data
+        }
     },
     extraReducers:(builder)=>{
         builder
@@ -101,9 +209,9 @@ const userSlice = createSlice({
         })
         .addCase(registerUser.rejected, (state, action)=>{
             state.loading=false;
-            console.log('action.payload.message',action.payload.message)
+             
             state.error = action.payload.message || "Something went wrong";
-            console.log('state.error ', state.error )
+             
         })
         .addCase(loginUser.pending, (state)=>{
             state.loading=true;
@@ -121,15 +229,18 @@ const userSlice = createSlice({
 
             state.userInfor = user;
             state.accessToken = action.payload?.accessToken;
+            localStorage.setItem('accessToken', action.payload?.accessToken);
             Cookies.set('refreshToken', action.payload?.refreshToken, { expires: 7 });
+            
+
            
      
         })
         .addCase(loginUser.rejected, (state, action)=>{
             state.loading=false;
-            console.log('action.payload.message',action.payload.message)
+             
             state.error = action.payload.message || "Something went wrong";
-            console.log('state.error ', state.error )
+             
         })
         .addCase(logoutUser.fulfilled, (state) => {
             state.accessToken = null;
@@ -138,12 +249,56 @@ const userSlice = createSlice({
        
     })
     .addCase(logoutUser.rejected, (state, action)=>{
+
         state.loading=false;
-        
+      
         state.error = action.payload || "Something went wrong";
         
     })
-    }
+    .addCase(getById.rejected, (state, action)=>{
+        state.loading=false;
+         
+        state.error = action.payload || "Something went wrong";
+         
+    })
+    .addCase(getById.pending, (state)=>{
+        state.loading=true;
+        state.error=null;
+    })
+    .addCase(getById.fulfilled, (state, action)=>{
+       state.userdetail = action.payload;
+    })
+    .addCase(updateUser.rejected, (state, action)=>{
+        state.loading=false;
+         
+        state.error = action.payload.message || "Something went wrong";
+         
+        state.message = null
+    })
+    .addCase(updateUser.pending, (state)=>{
+        state.loading=true;
+        state.error=null;
+    })
+    .addCase(updateUser.fulfilled, (state, action)=>{
+       state.userdetail = action.payload;
+       state.message = "Success"
+    })
+    .addCase(changePassword.rejected, (state, action)=>{
+        state.loading=false;
+         
+        state.error = action.payload.message || "Something went wrong";
+         
+        state.message = null
+    })
+    .addCase(changePassword.pending, (state)=>{
+        state.loading=true;
+        state.error=null;
+    })
+    .addCase(changePassword.fulfilled, (state, action)=>{
+       state.userdetail = action.payload;
+       state.message = "success"
+    })
+}
 });
-
+export const {resetUserAdd, resetUserDelete} = userSlice.actions;
 export default userSlice;   

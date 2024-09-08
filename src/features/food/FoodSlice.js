@@ -21,10 +21,25 @@ const FoodSlice = createSlice({
     initialState:{
         allfood:null,
         loading:null,
-        error:null
+        error:null,
+        foodrelation:{}
     },
     reducers:{
-
+        savefoodrelation: (state, action)=> {
+         
+         
+            const { foodId, ...rest } = action.payload;
+            if (!state.foodrelation[foodId]) {
+                state.foodrelation[foodId] = [];
+            }
+            state.foodrelation[foodId] = {
+                ...state.foodrelation[foodId],
+                ...rest,
+            };
+        },
+        deletefoodrelation:(state)=>{
+            state.foodrelation = {}
+        }
     },
     extraReducers:(builder)=>{
         builder
@@ -48,5 +63,5 @@ const FoodSlice = createSlice({
        
     }
 });
-
+export const {savefoodrelation,deletefoodrelation} = FoodSlice.actions;
 export default FoodSlice;   

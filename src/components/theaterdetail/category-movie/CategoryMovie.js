@@ -18,7 +18,7 @@ const CategoryMovie = ({theatermovies,typecategory}) => {
 
     
     const renderTypeCategory = () => {
-        console.log('theatermovies', theatermovies);
+
         if(typecategory === 'showing')
         {
             return   <h1>Phim đang chiếu</h1>
@@ -48,11 +48,11 @@ const CategoryMovie = ({theatermovies,typecategory}) => {
                     <h1>{theatermovie?.title}
                     </h1>
                     <div className='information-tag'>
-                    <span className='cl'><CiShoppingTag/><span>Hoat hinh</span></span>
-                                <span className='cl'><FaRegClock/><span>Hoat hinh</span></span>
-                                <span className='cl'><FaEarthAmericas/><span>Hoat hinh</span></span>
+       
+                                <span className='cl'><FaRegClock/><span>{theatermovie?.runtime}</span></span>
+                     
                                 <span className='cl'><PiSubtitlesBold/><span>{theatermovie?.releaseDate}</span></span>
-                                <span className='cl'><BsFillPersonFill/><span>Hoat hinh</span></span>
+                             
                     </div>
                   <ScreenItem movieid={theatermovie?.id}></ScreenItem>
                  <div className='smst'>

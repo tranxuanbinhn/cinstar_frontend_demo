@@ -6,18 +6,21 @@ import SlideList from "~/components/slider-list/SlideLists";
 import FooterCP from "~/components/footer/FooterCP";
 import './style/homepage.css';
 import '../components/utility/utility.css';
+import { useSelector } from "react-redux";
 function HomePage()
 {
+    const showingMovies = useSelector((state)=> state.movie.movieshowings);
+    const upcommingMovie = useSelector((state)=> state.movie.movieupcommings);
     return (
         <div className="homepage ">
             <Header></Header>
-            <div className=" background-color">
+            <div className=" background-color  mt-1500">
             <div className="container ">
             
       
-            <Order></Order>
-            <SlideList nameTitle="PHIM ĐANG CHẾU"/>
-            <SlideList nameTitle="PHIM SẮP CHIẾU"/>
+      
+            <SlideList nameTitle="PHIM ĐANG CHẾU" movieshowings={showingMovies}linkmovie={'/movie/showing'}/>
+            <SlideList nameTitle="PHIM SẮP CHIẾU" movieshowings={upcommingMovie} linkmovie={'/movie/upcoming'}/>
             
             </div>
             </div>

@@ -1,12 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getDetailTheater, getDetailTheaterForManyMovie } from "~/features/theater/TheaterSlice";
 import { useDispatch } from "react-redux";
+import { getTimeFromTime } from "~/features/untility/Ultility";
+import { Link } from "react-router-dom";
 
-const Movie = ({movies,theaterId}) => {
+const Movie = ({movies,theaterId, movieid}) => {
     const dispatch = useDispatch();
     const theaterdetail = useSelector((state)=> state.theater.moviedetailformanymovie[theaterId])
     const loadding = useSelector((state)=> state.theater.loadding)
+    //const [movieid, setMovieId] = useState();
+
 
  
     useEffect(()=>{
@@ -14,6 +18,8 @@ const Movie = ({movies,theaterId}) => {
     
     });
     },[])
+
+    console.log('moviesmovies',movies)
     const groupByTheaterId = movies.reduce((acc, current) => {
         const theaterId = current.theaterId;
       
@@ -23,7 +29,7 @@ const Movie = ({movies,theaterId}) => {
         }
       
   
-        acc[theaterId].push(current.time);
+        acc[theaterId].push(current.timeRedis);
       
         return acc;
       }, {});
@@ -41,10 +47,12 @@ return ( <div className='movie-right'>
     <div className='screen'>
         <p>Standard</p>
         <div className='screen-list'>
-        {groupByTheaterId[theaterId].map((time, index) => (
-            <a key={index} href="#">
-              <span>{time}</span>
-            </a>
+        {groupByTheaterId[theaterId].map((timeRedis, index) => (
+            <Link to={`/movie-detail/${movieid}`}>
+             <span>{getTimeFromTime(timeRedis) }</span>
+            </Link>
+             
+           
           ))}
             
 

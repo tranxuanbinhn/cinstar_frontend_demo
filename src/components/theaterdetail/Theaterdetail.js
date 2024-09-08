@@ -6,17 +6,17 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetailTheater } from '~/features/theater/TheaterSlice';
 import PriceTicket from './PriceTicket/PriceTicket';
-import { getNowshowingMovieByTheater, getUpcommingMovieByTheater } from '~/features/movie/MovieSlice';
+import { deleteAllMovietheaters, getNowshowingMovieByTheater, getUpcommingMovieByTheater } from '~/features/movie/MovieSlice';
 const Theaterdetail = () => {
     const dispatch = useDispatch();
     const theaterdetail = useSelector((state)=> state.theater.theaterdetail);
-    const movietheaters = useSelector((state)=> state.movie.movietheaters);
+    var movietheaters = useSelector((state)=> state.movie.movietheaters);
     const loading = useSelector((state)=> state.theater.loading);
     const [category, setCategory] = useState('showing');
     let {id} = useParams();
     useEffect(()=>{
         dispatch(getDetailTheater(id)).then((response)=>{
-            console.log('response', response);
+        
         })
     },[dispatch])
     const changeCategory = (value) => {
@@ -26,15 +26,19 @@ const Theaterdetail = () => {
         if(category === 'showing')
         {
             dispatch(getNowshowingMovieByTheater(id)).then((response)=>{
-                console.log('response theater', response);
+               
             })
         }
         if(category === 'upcomming')
         {
             dispatch(getUpcommingMovieByTheater(id)).then((response)=>{
-                console.log('response theater', response);
+               
             }) 
         }
+        if(category === 'special')
+            {
+                dispatch(deleteAllMovietheaters());
+            }
      
     },[category, id])
     if(loading)

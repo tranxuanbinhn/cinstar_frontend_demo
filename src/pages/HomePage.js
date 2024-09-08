@@ -14,7 +14,7 @@ import { useEffect } from "react";
 
 function HomePage()
 {
-    const userInfor = useSelector((state)=> state.user.userInfor);
+  
     const showingMovies = useSelector((state)=> state.movie.movieshowings);
     const upcommingMovie = useSelector((state)=> state.movie.movieupcommings);
     const loading = useSelector((state)=> state.movie.loading);
@@ -35,14 +35,14 @@ function HomePage()
     
     return (
         <div className="homepage ">
-            <Header userInfor={userInfor}></Header>
+            <Header ></Header>
             <div className=" background-color">
             <div className="container">
             
             <SliderPage></SliderPage>
-            <Order></Order>
-            <SlideList nameTitle="PHIM ĐANG CHẾU" movieshowings={showingMovies}/>
-            <SlideList nameTitle="PHIM SẮP CHIẾU" movieshowings={upcommingMovie}/>
+            
+            <SlideList nameTitle="PHIM ĐANG CHẾU" movieshowings={showingMovies}linkmovie={'/movie/showing'}/>
+            <SlideList nameTitle="PHIM SẮP CHIẾU" movieshowings={upcommingMovie} linkmovie={'/movie/upcoming'}/>
             <Promotion></Promotion>
             <Member></Member>
             <Entertaiment></Entertaiment>

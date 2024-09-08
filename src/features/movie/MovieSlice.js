@@ -45,9 +45,14 @@ export const getDetailMovie = createAsyncThunk(
     'movie/detailmovie',
     async (id,thunkAPI)=>{
         try{
+          if(id)
+          {
+            console.log('idmovidedetail', id)
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/movie/getdetail/${id}`);
-        
+            console.log('movidedetail',response)
             return response.data;
+          }
+          
         }
         catch(error)
         {
@@ -87,7 +92,7 @@ export const getNowshowingMovieByTheater = createAsyncThunk(
   'movie/nowshowingmovietheater',
   async (id,thunkAPI)=>{
       try{
-          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/movie/upcomming/${id}`);
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/movie/showing/${id}`);
           return response.data;
       }
       catch(error)
@@ -108,11 +113,20 @@ const MovieSlice = createSlice({
         detailmovie:null,
         movietheaters:null,
         moviesfind:null,
-        theatersfind:null
+        theatersfind:null,
+        id:null
 
 
     },
-    reducers:{},
+    reducers:{
+      getid:(state, action)=> {
+        console.log('action.payload', action.payload);
+        state.id = action.payload;
+      },
+      deleteAllMovietheaters: (state, action) => {
+        state.movietheaters = null;
+      }
+    },
     extraReducers:(builder)=>{
       builder.
       addCase(getNewMovie.fulfilled, (state, action)=>{
@@ -150,7 +164,7 @@ const MovieSlice = createSlice({
         state.loading = true;
       })
       .addCase(getDetailMovie.fulfilled, (state, action)=>{
-        state.detailmovie = action?.payload;
+        state.detailmovie = action.payload;
         state.loading = false;
        
       })
@@ -206,4 +220,5 @@ const MovieSlice = createSlice({
       })
     }
 })
+export const {getid, deleteAllMovietheaters} = MovieSlice.actions;
 export default MovieSlice;

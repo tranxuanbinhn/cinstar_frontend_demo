@@ -2,20 +2,17 @@ import { useEffect } from "react";
 import { IoIosArrowUp } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { getThreeShowtimeByMovie } from "~/features/showtime/ShowtimeSlice";
+import { getTimeFromTime } from "~/features/untility/Ultility";
 
 const ScreenItem = ({ movieid }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getThreeShowtimeByMovie(movieid)).then((response) => {
-            console.log('response', response);
         })
     }, [dispatch, movieid]);
 
     const threeshowtimes = useSelector((state) => state.showtimes.threeshowtimes[movieid]);
-    
-    console.log('movieid', movieid);
-    console.log('threeshowtimes', threeshowtimes);
 
     // Nhóm các showtimes theo ngày
     const groupedShowtimes = threeshowtimes?.reduce((acc, showtime) => {
@@ -36,7 +33,7 @@ const ScreenItem = ({ movieid }) => {
                         <p>Standard</p>
                         <div className='screen-item-inner-detail'>
                             {groupedShowtimes[date].map((showtime, index) => (
-                                <a key={index}><span>{showtime.time}</span></a>
+                                <a key={index}><span>{getTimeFromTime(showtime.time)}</span></a>
                             ))}
                         </div>
                     </div>

@@ -1,0 +1,10 @@
+.movie-showing-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.movie-showing-list a{
+    max-width: 300px;
+}
+.movie-showing-list h1{
+color: #f8f0fa;
+}

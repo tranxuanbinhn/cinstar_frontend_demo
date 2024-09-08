@@ -1,0 +1,35 @@
+.movie-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  
+  .movie-details .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .movie-details .overview {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  .movie-details .runtime,
+  .movie-details .release-date {
+    font-size: 14px;
+    color: #888;
+  }
+  .admin-film-h1{
+    font-size: 2.5rem; /* Kích thước chữ */
+    color: #333; /* Màu chữ */
+    text-align: center; /* Canh giữa */
+    margin: 20px 0; /* Khoảng cách trên và dưới */
+    font-weight: bold; /* Đậm chữ */
+    text-transform: uppercase; /* Chữ in hoa */
+    letter-spacing: 1px; /* Khoảng cách giữa các chữ cái */
+    font-family: 'Arial', sans-serif; /* Phông chữ */
+  }
+

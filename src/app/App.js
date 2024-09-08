@@ -12,7 +12,34 @@ import PromotionPage from '../pages/PromotionPage';
 import LoginPage from '../pages/LoginPage';
 import PersonPage from '~/pages/PersonPage';
 import CheckOutPage from '~/pages/CheckoutPage';
+import ResultPage from '~/pages/ResultPage';
+import TicketPage from '~/pages/TicketPage';
+import MovieShowingPage from '~/pages/MovieShowingPage';
+import MovieUpcomingPage from '~/pages/MovieUpcomingPage';
+//import { AdminRoutes } from '~/admin/routes/AdminRoutes';
+import React, { lazy, useEffect } from 'react'
+
+import UsersAdmin from '~/admin/pages/Users';
+import OrdersAdmin from '~/admin/pages/Orders';
+
+
+
+import ShowtimeManagement from '~/admin/pages/ShowtimeManagement';
+import MoviesAdmin from '~/admin/pages/Movie';
+import MoviesTheaterAdmin from '~/admin/pages/MovieTheater';
+import Sidebar from '~/admin/components/Sidebar';
+import AdminLayout from '~/admin/components/AdminLayout';
+import MessageApp from '~/admin/components/chat/ChatApp';
+import PrivateRoute from './PrivateRoute';
+
+//import Layout from '~/admin/container/Layout';
 function App() {
+  ////const Layout = lazy(() => import('../admin/container/Layout'))
+  //useEffect(() => {
+  //  // 👆 daisy UI themes initialization
+  //  themeChange(false)
+  //}, [])
+
   return (
     <div className="App ">
         <BrowserRouter>
@@ -28,6 +55,20 @@ function App() {
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/account/account-profile/" element={<PersonPage/>}/>
         <Route path="/checkout/" element={<CheckOutPage/>}/>
+        <Route path="/result/" element={<ResultPage/>}/>
+        <Route path="/ticket/" element={<TicketPage/>}/>
+        <Route path="/movie/showing" element={<MovieShowingPage/>}/>
+        <Route path="/movie/upcoming" element={<MovieUpcomingPage/>}/>
+
+             <Route path="/admin" element={<PrivateRoute admin={true} component={AdminLayout}/>}>
+                <Route path="orders" element={<OrdersAdmin />} />
+                <Route path="movies" element={<MoviesAdmin />} />
+                <Route path="moviestheater" element={<MoviesTheaterAdmin />} />
+                <Route path="showtimes" element={<ShowtimeManagement />} />
+                <Route path="users" element={<UsersAdmin />} />
+            
+              
+            </Route>
 
         </Routes>
        

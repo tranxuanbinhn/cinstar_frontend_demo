@@ -25,6 +25,9 @@
     font-size: 30px;
 
   }
+  .no-un{
+    text-decoration: none !important;
+  }
   .white-no{
 
     color: #F8FAFC !important;
@@ -73,6 +76,10 @@
     margin-top: 20px;
     margin-bottom: 30px;
     font-family: 'Josefin Sans';
+    text-decoration: none;
+  }
+  a{
+    text-decoration: none;
   }
   .trailer-order a {
     display: flex;

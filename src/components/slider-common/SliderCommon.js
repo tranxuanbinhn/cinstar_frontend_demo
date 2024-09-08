@@ -3,7 +3,7 @@ import Arrow from "./Arrow";
 import './slidelist.css';
 import { IoIosPlayCircle } from "react-icons/io";
 const SliderCommon = ({showingmovie}) => {
-  console.log('showingmoasssssvie',showingmovie)
+   
     const settings = {
         
         infinite: true,

@@ -84,6 +84,9 @@ justify-content: center;
 gap: 25px;
 margin-top: 30px;
 }
+.schedule-inner .schedule-item:hover{
+cursor: pointer;
+}
 .schedule-inner .schedule-item{
     max-width: 135px;
     padding: 20px;
@@ -165,6 +168,9 @@ height: 40px !important;
 }
 .movie-detail-screen-item-alert{
     display: none !important;
+}
+.movie-detail-screen-inner a:hover{
+    cursor: pointer;
 }
 .movie-detail-screen-inner a{
         max-width: 65px;
@@ -335,6 +341,9 @@ font-size: 12px !important;
 .dl-none{
     display: none !important;
 }
+.seat-hv:hover{
+    cursor: pointer;
+}
 .order-all-ctn{
     display: none;
 }
@@ -431,4 +440,8 @@ font-size: 12px !important;
     height: 40px;
     border-radius: 4px;
     background-color: #f3ea28;
+    font-family: 'Anton';
+}
+.order-ticket-total-button:hover{
+    cursor: pointer;
 }

@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
+import axiosInstance from '~/api/axiosInstance';
 
 
 export const getAllTheater= createAsyncThunk(
@@ -27,6 +28,20 @@ export const getDetailTheater= createAsyncThunk(
       catch(error)
       {
           return thunkAPI.rejectWithValue(error.response?.data);
+      }
+  }
+)
+export const getTheaterByOrder= createAsyncThunk(
+  'theater/theaterbyorder',
+  async (data,thunkAPI)=>{
+      try{
+          const response = await axiosInstance.get(`${process.env.REACT_APP_API_URL}/api/information/gettheaterbyid/${data?.userName}/${data?.id}`);
+          
+          return {id:data?.id,theaterbyorder:response.data};
+      }
+      catch(error)
+      {
+          return thunkAPI.rejectWithValue(error.response?.status);
       }
   }
 )
@@ -66,7 +81,8 @@ const TheaterSlice = createSlice({
         error:null,
         moviedetailformanymovie:{},
         loading:null,
-        theaterbycity:null
+        theaterbycity:null,
+        theaterbyorder:{}
       },
     reducers:{},
     extraReducers:(builder)=>{
@@ -128,6 +144,22 @@ state.loading = false;
 
 })
 .addCase(getTheaterByCity.pending, (state, action)=>{
+
+state.loading = true;
+
+})
+.addCase(getTheaterByOrder.fulfilled, (state, action)=>{
+  const{id, theaterbyorder} = action.payload;
+  state.theaterbyorder[id] = theaterbyorder;
+state.loading = false;
+
+})
+.addCase(getTheaterByOrder.rejected, (state, action)=>{
+state.error = action.payload?.message;
+state.loading = false;
+
+})
+.addCase(getTheaterByOrder.pending, (state, action)=>{
 
 state.loading = true;
 

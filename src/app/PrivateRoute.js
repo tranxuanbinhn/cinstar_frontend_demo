@@ -9,6 +9,7 @@ const PrivateRoute = ({ component: Component, admin, ...rest }) => {
     if (admin && !userInfor?.roles.includes("ROLE_ADMIN")) {
         return <Navigate to="/" />;
     }
+    
 
     // Render the component if access is allowed
     return <Component {...rest} />;

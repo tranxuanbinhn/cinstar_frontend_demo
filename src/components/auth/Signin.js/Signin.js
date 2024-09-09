@@ -23,13 +23,25 @@ const Login = () => {
             toast("Login success")
            
        
-            window.location.href = '/';
+
         }).catch((error)=>{
             toast("Some error");
         })
 
         
     }
+    useEffect(()=> {
+        if(userInfor)
+        {
+            if(userInfor?.roles.includes("ROLE_ADMIN"))
+            {
+                window.location.href = '/admin';
+            }
+            else{
+                window.location.href = '/';
+            }
+        }
+    }, [userInfor])
     return ( 
      
          <div className='form'>

@@ -12,7 +12,7 @@ const SliderPage = () => {
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getNewMovie()).then((response)=>{
-      console.log('response', response);
+       
     })
    
   },[dispatch])

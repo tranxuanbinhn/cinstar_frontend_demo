@@ -17,24 +17,24 @@ const MovieShowtime = ({movie,movieId}) => {
     const dispatch = useDispatch();
     const [moviedetail, setMovieDetail] = useState();
     const [categorizedByTheaterId, setCategorizedByTheaterId] = useState({});
-  console.log('moviedetail',moviedetail)
-  console.log('movie',movie)
+   
+   
 
   useEffect(() => {
 
     const categorizedData = categorizeByTheaterId(movie);
-    console.log('categorizedData ',categorizeByTheaterId )
+     
     setCategorizedByTheaterId(categorizedData);
   }, [movie]);
 
     useEffect(()=> {
-      console.log('movie id', movieId)
+       
         dispatch(getDetailMovie(movieId)).then((response)=>{
          setMovieDetail(response?.payload)
         })
     },[movieId])
 
-   console.log('categorizedByTheaterId',categorizedByTheaterId)
+    
     const categorizeByTheaterId = (movies) => {
         return movies.reduce((acc, current) => {
           const theaterId = current.theaterId;
@@ -55,7 +55,7 @@ const MovieShowtime = ({movie,movieId}) => {
     {
         return <div>Loadding</div>
     }
-    console.log('movie in mvmvmvm',movie);
+     
     return(<div className='movie'>
         <div className='movie-left'>
             <img src={`${process.env.REACT_APP_API_IMG_URL}${moviedetail?.posterPath}`}/>

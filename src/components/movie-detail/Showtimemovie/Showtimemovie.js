@@ -12,7 +12,7 @@ const ShowTimeMovie = ({date,movieid, theaterid, time, onSetTime}) => {
     const dispatch = useDispatch();
     const showtime = useSelector((state)=>state.showtimes.showtimefororder[theaterid]);
  
-    console.log('date, movied, theaterid',{date,movieid, theaterid});
+     
     useEffect(()=>{
 
             const currentyear = new Date();
@@ -26,12 +26,12 @@ const ShowTimeMovie = ({date,movieid, theaterid, time, onSetTime}) => {
      
         const newObject = {formattedDate:fulldate, selectedMovie:movieid, selectedTheater:theaterid}
         dispatch(getShowtimeToOrder(newObject)).then((response)=>{
-            console.log("screenid", response);
+             
         })
     },[date,movieid, theaterid])
     
   
-    console.log('showtime',showtime);
+     
     return (    <div className='movie-detail-screen-item'>
         <div className='movie-detail-screen-item-alert'>
         <MdOndemandVideo></MdOndemandVideo> <p>Hiện chưa có lịch chiếu</p>

@@ -14,7 +14,7 @@ export const getShowtime = createAsyncThunk(
             {
                 url = `/api/user/showtime?date=${encodedDate}&movieid=${selectedMovie}&theaterid=${selectedTheater}`;
             }
-            console.log('url', url);
+             
             const response = await axios.get(`${process.env.REACT_APP_API_URL}${url}`);
            
             return response.data;
@@ -39,7 +39,7 @@ export const getShowtimeToOrder = createAsyncThunk(
             {
                 url = `/api/user/showtime?date=${encodedDate}&movieid=${selectedMovie}&theaterid=${selectedTheater}`;
             }
-            console.log('url', url);
+             
             const response = await axios.get(`${process.env.REACT_APP_API_URL}${url}`);
             
             return {selectedTheater,showtimefororder:response.data};
@@ -55,7 +55,7 @@ export const getThreeShowtimeByMovie = createAsyncThunk(
     {
         try{
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/showtime/getthreebymovie/${id}`);
-            console.log('response', response);
+             
             return {id,showtimes:response.data};
         }
         catch(error)

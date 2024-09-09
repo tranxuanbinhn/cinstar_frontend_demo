@@ -166,6 +166,9 @@ height: 40px !important;
     gap: 20px;
   
 }
+.occupied{
+    background-color: #49576B !important ;
+}
 .movie-detail-screen-item-alert{
     display: none !important;
 }

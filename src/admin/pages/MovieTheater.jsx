@@ -58,9 +58,9 @@ const MoviesTheaterAdmin = () => {
     pageSize: 5,
   });
 
-console.log('allTheater',allTheater)
+ 
 
-console.log('newPaginationModel',paginationModel)
+ 
 
   const getFilmFromDatabase = (id)=> {
     dispatch(getDetailMovie(id));
@@ -78,8 +78,8 @@ console.log('newPaginationModel',paginationModel)
   }, [dispatch]);
 
 
-  console.log('movieshowings',movieshowings)
-  console.log('movieupcommings',movieupcommings)
+   
+   
 
   useEffect(() => {
     if (delUser?.status) {

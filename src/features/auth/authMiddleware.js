@@ -18,11 +18,11 @@ const authMiddleware = store => next => async action => {
             action.meta.arg.headers['Authorization'] = `Bearer ${newAccessToken}`;
             return store.dispatch(action.meta.arg);
         } catch (error) {
-            console.log('error in authMiddleware', error)
-            //store.dispatch(logoutUser());
-            //localStorage.clear();
-            //Cookies.remove('refreshToken');
-            //window.location.href = '/login';
+             
+            store.dispatch(logoutUser());
+            localStorage.clear();
+            Cookies.remove('refreshToken');
+            window.location.href = '/login';
         }
     }
     

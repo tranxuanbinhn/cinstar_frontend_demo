@@ -206,9 +206,13 @@ const MovieDetail = () => {
         })
 
     }, [theatercity])
-    
+    console.log('time', time)
     useEffect(()=>{
-        dispatch(getAllSeatByScreen(time.screenid)).then((response)=> {
+        const data = {
+            id:time?.screenid,
+            showtimeid:time?.id
+        }
+        dispatch(getAllSeatByScreen(data)).then((response)=> {
         })
    if(time)
    {
@@ -332,7 +336,6 @@ const MovieDetail = () => {
 
 
 
-
     const handleClickOrder = () => {
         const number =  Object.values(quantity).reduce((accumulator, currentValue) => {
               return accumulator + currentValue;
@@ -417,12 +420,12 @@ const MovieDetail = () => {
     const organizeData = (data) => {
         const organizedData = {};
         data.forEach(item => {
-            const { id, rowSeat, number, name, statusSeat ,typeSeat} = item;
+            const { id, rowSeat, number, name, statusSeat ,typeSeat,status} = item;
             if (!organizedData[rowSeat]) {
                 organizedData[rowSeat] = [];
             }
             // Thay vì lưu các giá trị riêng lẻ, lưu đối tượng ghế vào mảng
-            organizedData[rowSeat].push({ id, number, name,statusSeat , typeSeat});
+            organizedData[rowSeat].push({ id, number, name,statusSeat , typeSeat,status});
         });
         return organizedData;
     }
@@ -550,7 +553,11 @@ const MovieDetail = () => {
                     <tr>
                         {
                             organizeData(seats ? seats : [])[row].map(seat => (
-                                <td onClick={() => handleSeatClick(seat)} className={selectedSeats.some(selectedSeat => selectedSeat.id === seat.id) ? 'selected seat-hv' : 'seat-hv'} key={seat.id}>{seat.name}</td>
+                                <td   onClick={() => {
+                                    if (!seat?.status) {
+                                        handleSeatClick(seat);
+                                    }
+                                }}  className={selectedSeats.some(selectedSeat => selectedSeat.id === seat.id) ? 'selected seat-hv' : `seat-hv ${seat?.status? 'occupied' : ''}`} key={seat.id}>{seat.name}</td>
                             ))
                         }
                     </tr>

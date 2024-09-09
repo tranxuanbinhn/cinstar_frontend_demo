@@ -6,7 +6,7 @@ export const getCustomerByid = createAsyncThunk(
     
         async (id,thunkAPI) => { 
             try{
-                console.log('action work')
+                 
                 const config = {
                     headers: {
                       'Content-Type': 'application/json'
@@ -16,12 +16,12 @@ export const getCustomerByid = createAsyncThunk(
                 const response = await axiosInstance.get(`${process.env.REACT_APP_API_URL}/api/admin/customer/getbyid/${id}`);
                 
        
-                console.log('response.data:', response.data);
+                 
                 return response.data;
             }
             catch(error)
             {
-                console.log('error.response.data', error.response?.status);
+                 
                 return thunkAPI.rejectWithValue(error.response?.status);
             }
         }
@@ -33,7 +33,7 @@ export const getUserByid = createAsyncThunk(
     
         async (id,thunkAPI) => { 
             try{
-                console.log('action work')
+                 
                 const config = {
                     headers: {
                       'Content-Type': 'application/json'
@@ -43,12 +43,12 @@ export const getUserByid = createAsyncThunk(
                 const response = await axiosInstance.get(`${process.env.REACT_APP_API_URL}/api/admin/user/detail/${id}`);
                 
        
-                console.log('response.data:', response.data);
+                 
                 return response.data;
             }
             catch(error)
             {
-                console.log('error.response.data', error.response?.status);
+                 
                 return thunkAPI.rejectWithValue(error.response?.status);
             }
         }
@@ -74,9 +74,9 @@ const AdminCustomerSlice = createSlice({
         builder
         .addCase(getCustomerByid.rejected, (state, action)=>{
             state.loading=false;
-            console.log('action.payload.message',action.payload.message)
+             
             state.error = action.payload;
-            console.log('state.error ', state.error )
+             
             state.message = null
         })
         .addCase(getCustomerByid.pending, (state)=>{
@@ -89,9 +89,9 @@ const AdminCustomerSlice = createSlice({
         })
         .addCase(getUserByid.rejected, (state, action)=>{
             state.loading=false;
-            console.log('action.payload.message',action.payload.message)
+             
             state.error = action.payload;
-            console.log('state.error ', state.error )
+             
             state.message = null
         })
         .addCase(getUserByid.pending, (state)=>{

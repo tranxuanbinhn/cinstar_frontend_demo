@@ -59,15 +59,15 @@ const Showtime = () => {
             date: formattedDate
         }));
     }, []);
-    console.log('showtimes', showtimes)
+     
     useEffect(() => {
  
    
         if (showtimedate.date) {
-            console.log('showtimedate.date', showtimedate.date)
-            console.log('date', showtimedate)
+             
+             
             dispatch(getShowtime(showtimedate)).then(response => {
-                console.log('showtimedate', response)
+                 
             });
         }
     }, [showtimedate, dispatch]);
@@ -92,14 +92,14 @@ const Showtime = () => {
         const formattedDate = `${year}-${month}-${day}`;
         
 
-        console.log('formattedDate', formattedDate);
-        console.log('selectedMovie', selectedMovie);
+         
+         
 
-        console.log('selectedTheater', selectedTheater);
+         
 
 
         dispatch(getShowtime({formattedDate, selectedMovie, selectedTheater})).then((response)=> {
-            console.log('response is', response);
+             
         });
         
     },[selectedDate, selectedMovie, selectedTheater])
@@ -118,7 +118,7 @@ const Showtime = () => {
         acc[movieId].push(current);
         return acc;
     }, {}); 
-    console.log('categorizedByMovieId',categorizedByMovieId)
+     
     return (
         <div className='showtime'>
             <div className='showtime-select'>

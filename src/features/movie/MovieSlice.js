@@ -47,9 +47,9 @@ export const getDetailMovie = createAsyncThunk(
         try{
           if(id)
           {
-            console.log('idmovidedetail', id)
+             
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/movie/getdetail/${id}`);
-            console.log('movidedetail',response)
+             
             return response.data;
           }
           
@@ -120,7 +120,7 @@ const MovieSlice = createSlice({
     },
     reducers:{
       getid:(state, action)=> {
-        console.log('action.payload', action.payload);
+         
         state.id = action.payload;
       },
       deleteAllMovietheaters: (state, action) => {

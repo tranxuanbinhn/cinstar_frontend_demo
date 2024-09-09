@@ -6,7 +6,7 @@ export const getAllOrder = createAsyncThunk(
     
         async (data,thunkAPI) => { 
             try{
-                console.log('action work')
+                 
                 const config = {
                     headers: {
                       'Content-Type': 'application/json'
@@ -16,12 +16,12 @@ export const getAllOrder = createAsyncThunk(
                 const response = await axiosInstance.get(`${process.env.REACT_APP_API_URL}/api/admin/order?page=${data.page}&limit=${data.pageSize}`);
                 
        
-                console.log('response.data:', response.data);
+                 
                 return response.data;
             }
             catch(error)
             {
-                console.log('error.response.data', error.response?.status);
+                 
                 return thunkAPI.rejectWithValue(error.response?.status);
             }
         }
@@ -44,7 +44,7 @@ const AdminOrderSlice = createSlice({
             state.loading=false;
 
             state.error = action.payload;
-            console.log('state.error ', state.error )
+             
             state.message = null
         })
         .addCase(getAllOrder.pending, (state)=>{

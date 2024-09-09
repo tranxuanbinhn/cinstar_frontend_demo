@@ -58,7 +58,7 @@ const FoodSlice = createSlice({
             state.loading=false;
         
             state.error = action.payload || "Something went wrong";
-            console.log('state.error ', state.error )
+             
         })
        
     }

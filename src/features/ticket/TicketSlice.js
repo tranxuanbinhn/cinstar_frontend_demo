@@ -28,7 +28,7 @@ const TicketSlice = createSlice({
     reducers: {
         saveticketrelation: (state, action) => {
             const { seatId, ...rest } = action.payload;
-            console.log('action.payload', action.payload);
+             
         
          
             if (!state.ticketrelation[seatId]) {
@@ -63,7 +63,7 @@ const TicketSlice = createSlice({
             state.loading=false;
         
             state.error = action.payload || "Something went wrong";
-            console.log('state.error ', state.error )
+             
         })
        
     }

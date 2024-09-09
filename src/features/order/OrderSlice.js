@@ -54,7 +54,7 @@ export const getScreenById = createAsyncThunk(
         try{
            
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/user/ticketrelation`, data);
-            console.log('response in slicee',response)
+             
             return response.data;
         }
         catch(error)
@@ -185,7 +185,7 @@ const OrderSlice = createSlice({
             state.loading=false;
         
             state.error = action.payload || "Something went wrong";
-            console.log('state.error ', state.error )
+             
         })
         .addCase(createfoodRelation.pending, (state)=>{
             state.loading=true;
@@ -202,7 +202,7 @@ const OrderSlice = createSlice({
             state.loading=false;
         
             state.error = action.payload || "Something went wrong";
-            console.log('state.error ', state.error )
+             
         })
         .addCase(createticketRelation.pending, (state)=>{
             state.loading=true;
@@ -219,7 +219,7 @@ const OrderSlice = createSlice({
             state.loading=false;
         
             state.error = action.payload || "Something went wrong";
-            console.log('state.error ', state.error )
+             
         })
         .addCase(createticketOrder.pending, (state)=>{
             state.loading=true;
@@ -236,7 +236,7 @@ const OrderSlice = createSlice({
             state.loading=false;
         
             state.error = action.payload || "Something went wrong";
-            console.log('state.error ', state.error )
+             
         })
         .addCase(createOrder.pending, (state)=>{
             state.loading=true;
@@ -253,7 +253,7 @@ const OrderSlice = createSlice({
             state.loading=false;
         
             state.error = action.payload || "Something went wrong";
-            console.log('state.error ', state.error )
+             
         })
         .addCase(deleteOrder.pending, (state)=>{
             state.loading=true;
@@ -281,7 +281,7 @@ const OrderSlice = createSlice({
             state.loading=false;
         
             state.error = action.payload || "Something went wrong";
-            console.log('state.error ', state.error )
+             
         })
         .addCase(getAllOrderByUser.pending, (state, action)=>{
             state.loading=true;
@@ -298,7 +298,7 @@ const OrderSlice = createSlice({
             state.loading=false;
         
             state.error = action.payload || "Something went wrong";
-            console.log('state.error ', state.error )
+             
         })
     }
 });

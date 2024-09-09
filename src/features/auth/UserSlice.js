@@ -18,13 +18,11 @@ export const registerUser = createAsyncThunk(
                   const body = JSON.stringify(userdata);
                 
                 const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/signup`, body, config);
-                 
                
                 return response.data;
             }
             catch(error)
             {
-                 
                 return thunkAPI.rejectWithValue(error.response?.data);
             }
         }
@@ -41,7 +39,6 @@ export const logoutUser = createAsyncThunk(
               Authorization: `Bearer ${accessToken}`, // Use the stored access token
             },
           };
-           
         const response = await axiosInstance.post(`${process.env.REACT_APP_API_URL}/api/auth/signout`, null, config);
         localStorage.clear();
 
@@ -62,16 +59,11 @@ export const loginUser = createAsyncThunk(
                     }
                   }
                   const body = JSON.stringify(userdata);
-                 
                 const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/signin`, body, config);
-                
-       
-                 
                 return response.data;
             }
             catch(error)
             {
-                 
                 return thunkAPI.rejectWithValue(error.response?.data);
             }
         }
@@ -89,14 +81,10 @@ export const getById = createAsyncThunk(
                   }
                 
                 const response = await axiosInstance.get(`${process.env.REACT_APP_API_URL}/api/information/getbyid/${userName}`);
-                
-       
-                 
                 return response.data;
             }
             catch(error)
             {
-                 
                 return thunkAPI.rejectWithValue(error.response?.status);
             }
         }
@@ -114,16 +102,11 @@ export const updateUser = createAsyncThunk(
                       'Content-Type': 'application/json'
                     }
                   }
-                 
                 const response = await axiosInstance.put(`${process.env.REACT_APP_API_URL}/api/information/update/${data?.userName}`, data);
-                
-       
-                 
                 return response.data;
             }
             catch(error)
             {
-                 
                 return thunkAPI.rejectWithValue(error.response?.data);
             }
         }
@@ -140,16 +123,11 @@ export const changePassword = createAsyncThunk(
                     password:data.password,
                 }
                 
-                
                 const response = await axiosInstance.put(`${process.env.REACT_APP_API_URL}/api/information/changepassword/${data?.userName}`, object);
-                
-       
-                 
                 return response.data;
             }
             catch(error)
             {
-                 
                 return thunkAPI.rejectWithValue(error.response?.data);
             }
         }
@@ -209,9 +187,7 @@ const userSlice = createSlice({
         })
         .addCase(registerUser.rejected, (state, action)=>{
             state.loading=false;
-             
             state.error = action.payload.message || "Something went wrong";
-             
         })
         .addCase(loginUser.pending, (state)=>{
             state.loading=true;
@@ -238,9 +214,7 @@ const userSlice = createSlice({
         })
         .addCase(loginUser.rejected, (state, action)=>{
             state.loading=false;
-             
             state.error = action.payload.message || "Something went wrong";
-             
         })
         .addCase(logoutUser.fulfilled, (state) => {
             state.accessToken = null;
@@ -257,9 +231,7 @@ const userSlice = createSlice({
     })
     .addCase(getById.rejected, (state, action)=>{
         state.loading=false;
-         
         state.error = action.payload || "Something went wrong";
-         
     })
     .addCase(getById.pending, (state)=>{
         state.loading=true;
@@ -270,9 +242,7 @@ const userSlice = createSlice({
     })
     .addCase(updateUser.rejected, (state, action)=>{
         state.loading=false;
-         
         state.error = action.payload.message || "Something went wrong";
-         
         state.message = null
     })
     .addCase(updateUser.pending, (state)=>{
@@ -285,9 +255,7 @@ const userSlice = createSlice({
     })
     .addCase(changePassword.rejected, (state, action)=>{
         state.loading=false;
-         
         state.error = action.payload.message || "Something went wrong";
-         
         state.message = null
     })
     .addCase(changePassword.pending, (state)=>{

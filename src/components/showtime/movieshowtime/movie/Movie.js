@@ -19,7 +19,7 @@ const Movie = ({movies,theaterId, movieid}) => {
     });
     },[])
 
-    console.log('moviesmovies',movies)
+     
     const groupByTheaterId = movies.reduce((acc, current) => {
         const theaterId = current.theaterId;
       

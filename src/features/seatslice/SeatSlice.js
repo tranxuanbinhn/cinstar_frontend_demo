@@ -4,12 +4,12 @@ import axios from 'axios';
 
 export const getAllSeatByScreen = createAsyncThunk(
     'seat/getallbyscreen',
-    async (id,thunkAPI)=>{
+    async (data,thunkAPI)=>{
         try{
-            if(id)
+            if(data?.showtimeid)
             {
                 
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/seat/findbyscreen/${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/seat/findbyscreen/${data.id}/${data.showtimeid}`);
   
             return response.data;
             }
@@ -47,7 +47,7 @@ const SeatSlice = createSlice({
             state.loading=false;
         
             state.error = action.payload || "Something went wrong";
-            console.log('state.error ', state.error )
+             
         })
        
     }

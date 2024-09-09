@@ -42,10 +42,10 @@ export const Checkout = () => {
 
     const {register, handleSubmit, watch, formState:{errors}} = useForm();
     const dispatch = useDispatch();
-    console.log('orer', order);
-    console.log('userInfor', userInfor);
+     
+     
 
-    console.log('page', page);
+     
 
 
 
@@ -79,7 +79,7 @@ export const Checkout = () => {
         const foods = [];
 
         for (let id in ticketrelation) {
-            console.log('id', id);
+             
             const obj = ticketrelation[id];
             let showtimeId = obj['showtimeId'];
             let ticketId = obj['ticketId'];
@@ -91,10 +91,10 @@ export const Checkout = () => {
             tickets.push(ticketobject);
         }
 
-        console.log('tickets', tickets);
+         
 
         for (let id in foodrelation) {
-            console.log('id', id);
+             
             const obj = foodrelation[id];
             let quantity = obj['quantity'];
 
@@ -105,18 +105,18 @@ export const Checkout = () => {
             foods.push(foodobject);
         }
 
-        console.log('foods', foods);
-        console.log('tickets', tickets);
+         
+         
   
         
         dispatch(createticketRelation(tickets)).unwrap().then((response) => {
-            console.log('response', response);
+             
    
         });
         dispatch(deleteticketrelation());
         if (foods.length > 0) {
             dispatch(createfoodRelation(foods)).unwrap().then((response) => {
-                console.log('response', response);
+                 
              
             });
             dispatch(deletefoodrelation());
@@ -124,10 +124,10 @@ export const Checkout = () => {
         dispatch(setcount300())
 
     }
-    console.log('ticketrelations',ticketrelations)
-    console.log('foodrelations',foodrelations)
-    console.log('ticketrelation',ticketrelation)
-    console.log('ticketorder',ticketorder)
+     
+     
+     
+     
 
  
 
@@ -143,8 +143,8 @@ export const Checkout = () => {
                 ticketRelationIds:ticketRelationIds,
                 foodIds:foodIds
             }
-            dispatch(createticketOrder(ticketOrderDTO)).unwrap().then((response)=>
-            console.log('responsee',response))
+            dispatch(createticketOrder(ticketOrderDTO)).unwrap().then(
+            );
              dispatch(deleteticketorder())
         }
     },[ticketrelations])
@@ -194,9 +194,9 @@ export const Checkout = () => {
                 customerId:customerId===undefined?null:customerId,
                 totalPrice:Number(order?.total)
             }
-            console.log('orderDTO',orderDTO)
-            dispatch(createOrder(orderDTO)).unwrap().then((response)=>
-            console.log('responsee',response))
+             
+            dispatch(createOrder(orderDTO)).unwrap().then()
+             
              
         }
     },[ticketorder])
@@ -210,8 +210,8 @@ export const Checkout = () => {
         setCancel(true);
         window.location.href = '/'
     }
-    console.log('payment', payment);
-    console.log('orders', orders);
+     
+     
     if(!paymenstatus)
     {
         toast('Có lỗi ');

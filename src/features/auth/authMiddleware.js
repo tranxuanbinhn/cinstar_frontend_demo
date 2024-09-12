@@ -19,10 +19,10 @@ const authMiddleware = store => next => async action => {
             return store.dispatch(action.meta.arg);
         } catch (error) {
              
-            store.dispatch(logoutUser());
-            localStorage.clear();
-            Cookies.remove('refreshToken');
-            window.location.href = '/login';
+            //store.dispatch(logoutUser());
+            //localStorage.clear();
+            //Cookies.remove('refreshToken');
+            //window.location.href = '/login';
         }
     }
     

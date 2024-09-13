@@ -39,7 +39,7 @@ const {register, handleSubmit, watch, formState:{errors}} = useForm();
     useEffect(()=> {
         dispatch(getById(userInfor?.username))
         dispatch(getAllOrderByUser(userInfor?.username))
-    }, [dispatch])
+    }, [dispatch,userInfor])
     
     return (<div>
         <div className="person-ctn">

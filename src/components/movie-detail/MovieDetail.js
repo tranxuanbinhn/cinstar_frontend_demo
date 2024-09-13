@@ -206,7 +206,7 @@ const MovieDetail = () => {
         })
 
     }, [theatercity])
-    console.log('time', time)
+ 
     useEffect(()=>{
         const data = {
             id:time?.screenid,
@@ -394,7 +394,7 @@ const MovieDetail = () => {
 
 
                 }
-         
+                console.log('ticketRelation in movie detail', ticketRelation)
                 dispatch(saveticketrelation(ticketRelation));
 
             }

@@ -11,6 +11,7 @@ import { deleteticketrelation } from '~/features/ticket/TicketSlice';
 import { deletefoodrelation } from '~/features/food/FoodSlice';
 import { decrementTimeCounter, setpayment } from '~/features/time/TimeSlice';
 import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 
 
@@ -32,7 +33,7 @@ export const Checkout = () => {
     const success =  useSelector((state)=> state.order.success);
     const paymenstatus =  useSelector((state)=> state.time.payment);
 
-
+    //console.log('ticketrelations state',ticketrelations)
 
     
     const [page, setPage] = useState();
@@ -66,15 +67,37 @@ export const Checkout = () => {
     const handSelectPayment = (typepayment) => {
         setTypePayment(typepayment);
     }
-    const handlePayment = () => {
+    const handlePayment = async () => {
         const data = {
             infor:'thanh toan ve xem phim',
             total:order?.total
         }
         dispatch(setcount(false));
-        dispatch(paymentOrder(data)).unwrap().then((response)=>{
+        await handleOrder();
+        await dispatch(paymentOrder(data)).unwrap().then((response)=>{
             window.location.href = `${response.redirect_url}`
         });
+        
+    }
+    const handlecreateOrderData = (ticketorder) => {
+           let userId;
+           let customerId;
+           if(userInfor)
+            {
+                userId=userInfor.id;
+            } else{
+                customerId = customer?.id;
+            }
+            const  orderDTO = {
+                ticketorderId:ticketorder.id,
+                userId:userId===undefined?null:userId,
+                customerId:customerId===undefined?null:customerId,
+                totalPrice:Number(order?.total)
+            }
+             
+            dispatch(createOrder(orderDTO)).unwrap().then();
+    }
+    const handleOrder = async () => {
         const tickets = [];
         const foods = [];
 
@@ -109,45 +132,59 @@ export const Checkout = () => {
          
   
         
-        dispatch(createticketRelation(tickets)).unwrap().then((response) => {
-             
-   
-        });
-        dispatch(deleteticketrelation());
+        const ticketrelationdata = await axios.post(`${process.env.REACT_APP_API_URL}/api/user/ticketrelation`, tickets);
+
+       var foodrelationdata;
         if (foods.length > 0) {
-            dispatch(createfoodRelation(foods)).unwrap().then((response) => {
-                 
-             
-            });
-            dispatch(deletefoodrelation());
-        }
-        dispatch(setcount300())
 
-    }
-     
-     
-     
-     
-
- 
-
-    useEffect(()=>{
-        if(ticketrelations?.length >0){
-            const ticketRelationIds = ticketrelations.map(item=>item.id);
+        foodrelationdata = await axios.post(`${process.env.REACT_APP_API_URL}/api/user/foodrelation`, tickets);    
+         }
+         const ticketRelationIds = ticketrelationdata.data?.map(item=>item.id);
             let foodIds;
-            if(foodrelations?.length>0)
+            if(foodrelationdata!=undefined)
             {
-                foodIds = foodrelations.map(item=>item.id);
+                foodrelationdata = foodrelations.map(item=>item.id);
             }
             const  ticketOrderDTO = {
                 ticketRelationIds:ticketRelationIds,
                 foodIds:foodIds
             }
-            dispatch(createticketOrder(ticketOrderDTO)).unwrap().then(
-            );
-             dispatch(deleteticketorder())
-        }
-    },[ticketrelations])
+            const ticketOrder = await axios.post(`${process.env.REACT_APP_API_URL}/api/user/ticketorder`, ticketOrderDTO);
+
+            const order= await handlecreateOrderData(ticketOrder?.data);
+            
+        
+        dispatch(setcount300())
+
+    } 
+     
+     
+     
+     
+
+    const deleteticket = () => {
+        dispatch(deleteticketorder());
+    }
+
+    //useEffect(()=>{
+        //if(ticketrelations?.length >0){
+        //    const ticketRelationIds = ticketrelations.map(item=>item.id);
+        //    let foodIds;
+        //    if(foodrelations?.length>0)
+        //    {
+        //        foodIds = foodrelations.map(item=>item.id);
+        //    }
+        //    const  ticketOrderDTO = {
+        //        ticketRelationIds:ticketRelationIds,
+        //        foodIds:foodIds
+        //    }
+        //    dispatch(createticketOrder(ticketOrderDTO)).unwrap().then(
+        //    );
+        //     dispatch(deleteticketorder())
+        //}
+        
+    //},[ticketrelations])
+
     const timecounter = useSelector((state) => state.time.timecounter);
     const location = useLocation();
     useEffect(() => {
@@ -178,28 +215,28 @@ export const Checkout = () => {
 
      }, [dispatch, location,timecounter]);
  
-    useEffect(()=>{
-        if(ticketorder && Object.keys(ticketorder).length > 0){
-           let userId;
-           let customerId;
-           if(userInfor)
-            {
-                userId=userInfor.id;
-            } else{
-                customerId = customer?.id;
-            }
-            const  orderDTO = {
-                ticketorderId:ticketorder.id,
-                userId:userId===undefined?null:userId,
-                customerId:customerId===undefined?null:customerId,
-                totalPrice:Number(order?.total)
-            }
+    //useEffect(()=>{
+    //    if(ticketorder && Object.keys(ticketorder).length > 0){
+    //       let userId;
+    //       let customerId;
+    //       if(userInfor)
+    //        {
+    //            userId=userInfor.id;
+    //        } else{
+    //            customerId = customer?.id;
+    //        }
+    //        const  orderDTO = {
+    //            ticketorderId:ticketorder.id,
+    //            userId:userId===undefined?null:userId,
+    //            customerId:customerId===undefined?null:customerId,
+    //            totalPrice:Number(order?.total)
+    //        }
              
-            dispatch(createOrder(orderDTO)).unwrap().then()
+    //        dispatch(createOrder(orderDTO)).unwrap().then()
              
              
-        }
-    },[ticketorder])
+    //    }
+    //},[ticketorder])
 
     
     if(customererr)

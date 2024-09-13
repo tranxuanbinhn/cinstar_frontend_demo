@@ -31,6 +31,7 @@ import Sidebar from '~/admin/components/Sidebar';
 import AdminLayout from '~/admin/components/AdminLayout';
 import MessageApp from '~/admin/components/chat/ChatApp';
 import PrivateRoute from './PrivateRoute';
+import NotFoundPage from '~/pages/NotFoundPage';
 
 //import Layout from '~/admin/container/Layout';
 function App() {
@@ -59,6 +60,7 @@ function App() {
         <Route path="/ticket/" element={<TicketPage/>}/>
         <Route path="/movie/showing" element={<MovieShowingPage/>}/>
         <Route path="/movie/upcoming" element={<MovieUpcomingPage/>}/>
+        <Route path='*' element={<NotFoundPage></NotFoundPage>}/>
 
              <Route path="/admin" element={<PrivateRoute admin={true} component={AdminLayout}/>}>
                 <Route path="orders" element={<OrdersAdmin />} />

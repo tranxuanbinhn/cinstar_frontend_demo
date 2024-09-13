@@ -1,0 +1,28 @@
+.notfound-ctn{
+    background-color: #111a2e;
+    height: calc(100vh - 100px);
+    padding-top: 100px;
+}
+.notfound-background{
+    max-width: 650px;
+    background-color: rgb(216, 220, 223);
+    display: block;
+    margin: 0 auto;
+    padding: 50px;
+    display: flex;
+    flex-flow: column;
+    gap: 15px;
+    align-items: start;
+    border-radius: 15px;
+}
+.notfound-background h3{
+    font-size: 20px;
+
+}
+.notfound-background p
+{
+    font-size: 14px;
+}
+.notfound-img img{
+   color: black;
+}

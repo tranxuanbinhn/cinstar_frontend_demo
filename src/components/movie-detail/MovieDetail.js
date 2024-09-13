@@ -394,7 +394,7 @@ const MovieDetail = () => {
 
 
                 }
-                console.log('ticketRelation in movie detail', ticketRelation)
+            
                 dispatch(saveticketrelation(ticketRelation));
 
             }
